@@ -25,13 +25,15 @@ _Write a summary of your project._
 # Introduction 
 
 ## General Background Information
-_Provide enough background on your topic that others can understand the why and how of your analysis_ 
+During the COVID-19 pandemic, the government of Bangladesh adopted nationwide lockdown. There has been some studies that showed its adverse  effect on people of Bangladesh. As the government has taken the vaccination program very strictly, it was expected to see a large number of population would get vaccinated. But as the reality was the opposite, we wanted to know why people are not getting vaccinated enough despite being affected by COVID-19 lockdown. Our research will shed somelight on Bangladeshi people's vaccine hesitancy. Als briefly, out work will present its relation to mental wellness.
 
 ## Description of data and data source
-_Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section._
+Data was/will be collected using online questionnaire.
 
 ## Questions/Hypotheses to be addressed
-_State the research questions you plan to answer with this analysis._
+The main question is to find out why people gets hesitant to get vaccinated. Finding out their key motivator is the prime goal. Also, how mental wellness after covid-19 lockdown might affect their hesitant desition to get vaccinated, is another question we want to answer. 
+
+[I still haven't got access to the data. As soon as I get access to the data, I can update more information like how many subjects were included and info like that.]
 
 
 
