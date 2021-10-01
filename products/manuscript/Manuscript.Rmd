@@ -1,7 +1,7 @@
 ---
-title: "Example Manuscript Template for a Data Analysis Project"
+title: "Using Andersen’s model of health care utilization to assess factors associated with COVID-19 testing among adults in nine low-and middle-income countries: an online survey"
 subtitle: ""
-author: Andreas Handel
+author: Ehsan Suez
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: article
@@ -25,21 +25,45 @@ _Write a summary of your project._
 # Introduction 
 
 ## General Background Information
-During the COVID-19 pandemic, the government of Bangladesh adopted nationwide lockdown.\ There has been some studies that showed its adverse  effect on people of Bangladesh.\ As the government has taken the vaccination program very strictly, it was expected to see a large number of population would get vaccinated.\ But as the reality was the opposite, we wanted to know why people are not getting vaccinated enough despite being affected by COVID-19 lockdown.\ Our research will shed somelight on Bangladeshi people's vaccine hesitancy. Als briefly, out work will present its relation to mental wellness.
+This study aimed to investigate, using the Andersen’s model of health care utilization, factors associated with COVID-19 testing among adults in Bangladesh.
 
 ## Description of data and data source
-Data was/will be collected using online questionnaire.
+This will be a descriptive cross-sectional online study. To get data for this study, between 10 December 2020 and 9 February 2021 an online survey was organized in Bangladesh. In total 759 adults (median age 45 years, interquartile range 33-57 years, range 18-93 years), participated in the study. COVID-19 testing/infection status was assessed by self-report.
 
 ## Questions/Hypotheses to be addressed
-The main question is to find out why people gets hesitant to get vaccinated.\ Finding out their key motivator is the prime goal.\ Also, how mental wellness after covid-19 lockdown might affect their hesitant desition to get vaccinated, is another question we want to answer.\ 
-
-[I still haven't got access to the data. As soon as I get access to the data, I can update more information like how many subjects were included and info like that.]
+The main question is to find out the key factors associated with covid-19 testing
 
 
 
 # Methods and Results
 
-_In most research papers, results and methods are separate. You can combine them here if you find it easier. You are also welcome to structure things such that those are separate sections._
+_Study design, sample, and procedure_
+
+This will be a descriptive cross-sectional online study conducted in Bangladesh between 10 December 2020 to 9 February 2021. Participant inclusion criteria were 18 years and older, any gender, and provision of electronic informed consent. 
+
+_Measures_
+Using Andersen’s model of health care utilization [Andersen 1995], study variables will be categorized into outcome variable, predisposing factors, enabling/disabling factors and need for care factors.
+
+_Outcome variable_
+COVID-19 testing/infection status will be assessed with the question, “Since the beginning of the COVID-19 outbreak, do you have information on your infection status?” Response options were 1=not tested/does not know test results, 2=negative, and 3=positive.
+
+_Predisposing factors_
+Sociodemographic factors included age, sex, country of residence, educational level, and the (estimated) age(s) of their housemate(s). Chronic/underlying diseases includs heart disease, hypertension, diabetes, cancer, HIV, tuberculosis, and chronic asthma; coded as “0” none and “1” at least presence of one clinically diagnosed condition.
+
+_COVID-19 preventive measures_
+Participants were asked, “During the past 7 days, have you been observing any of the following preventive measures against COVID-19? 1) Social distancing of at least 1.5m, 2) Wearing a face mask, 3) Hand hygiene (regular handwashing with soap or using hand gel), and 4) Coughing hygiene (covering the mouth when coughing or sneezing). A composite non-adherence to all four COVID-19 preventive measure was calculated by coding each negative response with “1”, summing scores ranging from 0-4 (Cronbach’s alpha 0.7).
+
+_Enabling/disabling factors_
+Enabling factors include self-perceived socio-economic status, self-perceived area of residence, being a student or worker in the health care sector, source of COVID-19 information/advice most trusted (coded as other, including family and friends, radio/TV, social media, religious authorities and health personnel.
+
+_Disabling factors_ include the assessment of psychological distress with the Patient Health Questionnaire (PHQ-4) for Depression and Anxiety symptoms [Kroenke/ Löwe]. The severity of psychological distress is categorized as normal (0-2), mild (3-5). moderate (6-8) and severe (9-12) based on the PHQ-4 scores.
+
+_Need for care factors_ include two questions on 1) the level of fear/worry of being infected with COVID-19 (ranging from 1=not at all worried to 5=extremely worried), and 2) having been quarantined (either at home or elsewhere) at any point in time during the COVID-19 epidemic.
+
+_Data analysis_
+
+Descriptive statistics will be used to describe the study population. Logistic regression will be used to assess associations between predisposing factors, enabling and disabling factors, need of care factors and COVID-19 testing status, COVID-19 positive versus negative status and COVID-19 positive versus negative and not tested status. Variables significant at <0.05 in univariate analyses were subsequently included in the multivariable logistic regression models. Statistical analyses will conducted using R.
+
 
 
 ## Data aquisition
@@ -60,17 +84,17 @@ _To get some further insight into your data, if reasonable you could compute sim
 Table \@ref(tab:summarytable) shows a table summarizing the data.
 
 
-```{r summarytable,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable.rds")
-knitr::kable(resulttable, caption = 'Data summary table.')
-```
+#```{r summarytable,  echo=FALSE}
+#resulttable=readRDS("../../results/summarytable.rds")
+#knitr::kable(resulttable, caption = 'Data summary table.')
+#```
 
 
 Figure \@ref(fig:resultfigure) shows a scatterplot figure produced by one of the R scripts.
 
-```{r resultfigure,  fig.cap='Analysis figure.', echo=FALSE}
-knitr::include_graphics("../../results/resultfigure.png")
-```
+#```{r resultfigure,  fig.cap='Analysis figure.', echo=FALSE}
+#knitr::include_graphics("../../results/resultfigure.png")
+#```
 
 
 ## Full analysis
@@ -79,10 +103,10 @@ _Use one or several suitable statistical/machine learning methods to analyze you
 
 Example table \@ref(tab:resulttable) shows a table summarizing a linear model fit.
 
-```{r resulttable,  echo=FALSE}
-resulttable=readRDS("../../results/resulttable.rds")
-knitr::kable(resulttable, caption = 'Linear model fit table.')
-```
+###```{r resulttable,  echo=FALSE}
+###resulttable=readRDS("../../results/resulttable.rds")
+###knitr::kable(resulttable, caption = 'Linear model fit table.')
+#```
 
 
 # Discussion
