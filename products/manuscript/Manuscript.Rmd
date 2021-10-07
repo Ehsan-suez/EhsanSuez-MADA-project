@@ -69,8 +69,257 @@ Descriptive statistics will be used to describe the study population. Logistic r
 ## Data aquisition
 _As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
 
-## Data import and cleaning
-_Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what kind of cleaning/processing you do, and provide more details and well documented code somewhere (e.g. as supplement in a paper). All materials, including files that contain code, should be commented well so everyone can follow along._
+## Data import and cleaning_ [Here I mostly covered descriptive analysis]
+---
+title: "try"
+author: "Ehsan"
+date: "10/6/2021"
+output: html_document
+---
+```{r}
+library(ggplot2)
+library(tidyverse)
+library("readxl")
+```
+
+```{r}
+data1 <- readxl::read_excel('~/Study /MADA_2021/EhsanSuez-MADA-project/data/raw_data/Covid Vaccine data_Bangladesh_Abu_Sayeed.xlsx')
+```
+
+#I want to see how many NA values are there for each column. So, I wrote the following code. For manuscript we dont need it.
+#```{r}
+cbind(
+      lapply(
+             lapply(data1, is.na)
+             , sum)
+  )
+#
+#I want to see which columns have NA values
+```{r}
+df <- as.data.frame(
+      cbind(
+             lapply(
+                   lapply(data1, is.na), sum)
+        )
+   )
+rownames(subset(df, df$V1 != 0))
+```
+#the mean age and SD of mean age:
+```{r}
+mean(data1$Age)
+sd(data1$Age)
+```
+#For each age group, whats their percentage?
+```{r}
+data1 %>% 
+     group_by( Age ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+#number of male and female
+```{r}
+sum(data1$Sex=='Male')
+sum(data1$Sex=='Female')
+```
+#percentage of male and female
+```{r}
+data1 %>% 
+     group_by( Sex ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+
+```
+#number of people for each educational category
+```{r}
+table(data1$`Highest educational level`)
+```
+```{r}
+sum(data1$'Highest educational level' == 'Primary')
+sum(data1$'Highest educational level' == 'Secondary')
+sum(data1$'Highest educational level' == 'University Postgraduate degree holder')
+sum(data1$'Highest educational level' == 'University Undergraduate degree holder')
+```
+#percentage of people for each student category
+```{r}
+data1 %>% 
+     group_by( `Highest educational level` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+#student/worker in the heathcare sector?
+```{r}
+table(data1$`Are you a student or worker in the healthcare sector?`)
+```
+#household members?
+```{r}
+table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 60 years and above`)
+table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 18 to 59 years`)
+table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 12 to 17 years`)
+table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: Less than 12 years`)
+```
+```{r}
+table(data1$`Which of the following categories best describes your current socio-economic situation?`)
+```
+```{r}
+sum(data1$'Which of the following categories best describes your current socio-economic situation?' == 'High income category')
+sum(data1$'Which of the following categories best describes your current socio-economic situation?' == 'Low income category')
+sum(data1$'Which of the following categories best describes your current socio-economic situation?' == 'Lower middle income category')
+sum(data1$'Which of the following categories best describes your current socio-economic situation?' == 'Upper middle income category ')
+```
+
+#percentage of income category?
+```{r}
+data1 %>% 
+     group_by( `Which of the following categories best describes your current socio-economic situation?` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+```{r}
+table(data1$`Do you live in:`)
+```
+```{r}
+sum(data1$'Do you live in:' == 'A rural place / village')
+sum(data1$'Do you live in:' == 'A Sub-urban setting / urban slum')
+sum(data1$'Do you live in:' == 'An urban setting / city / town')
+```
+#percentage of living setup?
+```{r}
+data1 %>% 
+     group_by( `Do you live in:` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+```{r}
+table(data1$`Which source of COVID-19 information/advice do you trust the most?`)
+```
+
+```{r}
+sum(data1$'Are you currently working/studying from home because of the COVID-19 outbreak?' == 'No')
+sum(data1$'Are you currently working/studying from home because of the COVID-19 outbreak?' == 'Yes')
+```
+
+#percentage of work from home or not?
+```{r}
+data1 %>% 
+     group_by( `Are you currently working/studying from home because of the COVID-19 outbreak?` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+#Descriptive analysis for each question?
+```{r}
+table(data1$`Have you been quarantined (either at home or else where) at any point in time during the Covid-19 epidemic?`)
+```
+```{r}
+table(data1$`Since the beginning of the COVID-19 outbreak, do you have information on your infection status?`)
+```
+```{r}
+table(data1$`How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5`)
+```
+```{r}
+table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Heart disease`)
+```
+```{r}
+table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Hypertension`)
+```
+```{r}
+table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Diabetes`)
+```
+```{r}
+table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Cancer`)
+```
+```{r}
+table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): HIV`)
+```
+```{r}
+table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Tuberculosis`)
+```
+```{r}
+table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Asthma`)
+```
+```{r}
+table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above`)
+```
+```{r}
+table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Social distancing of at least 1.5m`)
+```
+```{r}
+table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Wearing face mask`)
+```
+```{r}
+table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Hand hygiene (regular handwashing with soap or using hand gel)`)
+```
+```{r}
+table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Coughing hygiene (covering mouth when coughing or sneezing)`)
+```
+```{r}
+table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above`)
+```
+```{r}
+table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Feeling down, depressed, or hopeless (low spirits)`)
+```
+```{r}
+table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Little interest or pleasure in doing things`)
+```
+```{r}
+table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Not being able to stop or control worrying`)
+```
+```{r}
+table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Feeling nervous, anxious or on edge`)
+```
+```{r}
+table(data1$`In your opinion, can someone be re-infected with coronavirus after recovering from a previous COVID-19 infection?`)
+```
+```{r}
+table(data1$`In your opinion, can COVID-19 infection be prevented by a vaccine?`)
+```
+```{r}
+table(data1$`To the best of your knowledge, is there currently an effective vaccine against COVID-19?`)
+```
+```{r}
+table(data1$`Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 50% effective`)
+```
+```{r}
+table(data1$`Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 75% effective`)
+```
+```{r}
+table(data1$`Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 90% effective`)
+```
+```{r}
+table(data1$`Would you be willing to allow your children take the COVID-19 vaccine when it becomes available?: If it is at least 95% effective`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible):  I don't think COVID-19 existsists`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I think the vaccine is not effective`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I think the vaccine is designed to harm us`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I am scared of side-effects of the vaccine`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): My body is naturally strong, I don't need a vaccine to fight COVID-19`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I already had COVID-19, so I think I am immune to the disease`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): The COVID-19 pandemic is finished in my country, no need for a vaccine now`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): None of the above`)
+```
+```{r}
+table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): Other reasons (please specify)`)
+```
+```{r}
+table(data1$`Please specify other reasons for hesitating to receive the COVID-19 vaccine:`)
+```
+```{r}
+table(data1$`How important is it to you that by getting the COVID-19 vaccine, you would protect your own health?: On a scale of 1 to 5`)
+```
+```{r}
+table(data1$`How important is it to you that by getting the COVID-19 vaccine, you would protect the health of other people in your community?: On a scale of 1 to 5`)
+```
+```{r}
+table(data1$`I fully understand what this study is about, and I freely consent to participate. All the information I provide can be used by researchers to better understand coronavirus disease in my country.`)
+```
 
 
 ## Exploratory analysis
