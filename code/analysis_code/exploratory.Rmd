@@ -46,14 +46,19 @@ sd(data1$Age)
 #For each age group, whats their percentage?
 ```{r}
 data1 %>% 
-     group_by( Age ) %>% 
+     group_by(Age) %>%
      summarise( percent = 100 * n() / nrow( data1) )
+     
 ```
-#number of male and female
+#people over 40
 ```{r}
-sum(data1$Sex=='Male')
-sum(data1$Sex=='Female')
+data1 %>% 
+     dplyr::filter(Age > 40 ) %>%
+     group_by(Age) %>%
+     summarise( percent = 100 * n() / nrow( data1) )
+     
 ```
+
 #percentage of male and female
 ```{r}
 data1 %>% 
@@ -80,6 +85,14 @@ data1 %>%
 ```{r}
 table(data1$`Are you a student or worker in the healthcare sector?`)
 ```
+#percentage of student/health worker
+
+```{r}
+data1 %>% 
+     group_by( `Are you a student or worker in the healthcare sector?` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+
 #household members?
 ```{r}
 table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 60 years and above`)
@@ -120,6 +133,13 @@ data1 %>%
 ```{r}
 table(data1$`Which source of COVID-19 information/advice do you trust the most?`)
 ```
+#most trusted source?
+```{r}
+data1 %>% 
+     group_by( `Which source of COVID-19 information/advice do you trust the most?` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+
 
 ```{r}
 sum(data1$'Are you currently working/studying from home because of the COVID-19 outbreak?' == 'No')
@@ -139,9 +159,24 @@ table(data1$`Have you been quarantined (either at home or else where) at any poi
 ```{r}
 table(data1$`Since the beginning of the COVID-19 outbreak, do you have information on your infection status?`)
 ```
+#correct knowledge of their status
+```{r}
+data1 %>% 
+     group_by( `Since the beginning of the COVID-19 outbreak, do you have information on your infection status?` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+
+
 ```{r}
 table(data1$`How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5`)
 ```
+#worried about re-infection
+```{r}
+data1 %>% 
+     group_by( `How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+
 ```{r}
 table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Heart disease`)
 ```
@@ -167,6 +202,14 @@ table(data1$`Do you have any of the following chronic/underlying diseases? (many
 table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above`)
 ```
 ```{r}
+data1 %>% 
+     group_by( `Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+
+
+
+```{r}
 table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Social distancing of at least 1.5m`)
 ```
 ```{r}
@@ -181,6 +224,15 @@ table(data1$`During the past 7 days, have you been observing any of the followin
 ```{r}
 table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above`)
 ```
+```{r}
+data1 %>% 
+     group_by( `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+
+
+
+
 ```{r}
 table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Feeling down, depressed, or hopeless (low spirits)`)
 ```

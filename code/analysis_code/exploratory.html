@@ -276,7 +276,7 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 <pre><code>## [1] 10.83175</code></pre>
 <p>#For each age group, whats their percentage?</p>
 <pre class="r"><code>data1 %&gt;% 
-     group_by( Age ) %&gt;% 
+     group_by(Age) %&gt;%
      summarise( percent = 100 * n() / nrow( data1) )</code></pre>
 <pre><code>## # A tibble: 53 × 2
 ##      Age percent
@@ -292,11 +292,25 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##  9    26    8.07
 ## 10    27    4.53
 ## # … with 43 more rows</code></pre>
-<p>#number of male and female</p>
-<pre class="r"><code>sum(data1$Sex==&#39;Male&#39;)</code></pre>
-<pre><code>## [1] 387</code></pre>
-<pre class="r"><code>sum(data1$Sex==&#39;Female&#39;)</code></pre>
-<pre><code>## [1] 319</code></pre>
+<p>#people over 40</p>
+<pre class="r"><code>data1 %&gt;% 
+     dplyr::filter(Age &gt; 40 ) %&gt;%
+     group_by(Age) %&gt;%
+     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+<pre><code>## # A tibble: 30 × 2
+##      Age percent
+##    &lt;dbl&gt;   &lt;dbl&gt;
+##  1    41   0.992
+##  2    42   1.56 
+##  3    43   0.708
+##  4    44   0.850
+##  5    45   0.992
+##  6    46   0.708
+##  7    47   1.42 
+##  8    48   0.708
+##  9    49   0.283
+## 10    50   0.142
+## # … with 20 more rows</code></pre>
 <p>#percentage of male and female</p>
 <pre class="r"><code>data1 %&gt;% 
      group_by( Sex ) %&gt;% 
@@ -337,6 +351,15 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 <pre><code>## 
 ##  No Yes 
 ## 480 226</code></pre>
+<p>#percentage of student/health worker</p>
+<pre class="r"><code>data1 %&gt;% 
+     group_by( `Are you a student or worker in the healthcare sector?` ) %&gt;% 
+     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   `Are you a student or worker in the healthcare sector?` percent
+##   &lt;chr&gt;                                                     &lt;dbl&gt;
+## 1 No                                                         68.0
+## 2 Yes                                                        32.0</code></pre>
 <p>#household members?</p>
 <pre class="r"><code>table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 60 years and above`)</code></pre>
 <pre><code>## 
@@ -417,6 +440,20 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##                                                16 
 ##   Social Media (WhatsApp, Facebook, Twitter, etc) 
 ##                                               151</code></pre>
+<p>#most trusted source?</p>
+<pre class="r"><code>data1 %&gt;% 
+     group_by( `Which source of COVID-19 information/advice do you trust the most?` ) %&gt;% 
+     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+<pre><code>## # A tibble: 7 × 2
+##   `Which source of COVID-19 information/advice do you trust the most?` percent
+##   &lt;chr&gt;                                                                  &lt;dbl&gt;
+## 1 Family and friends                                                      2.97
+## 2 Health personnel                                                       33.6 
+## 3 None of the above                                                       4.53
+## 4 Other                                                                   4.53
+## 5 Radio / TV                                                             30.7 
+## 6 Religious authorities (Pastor, Priest, Imam, etc)                       2.27
+## 7 Social Media (WhatsApp, Facebook, Twitter, etc)                        21.4</code></pre>
 <pre class="r"><code>sum(data1$&#39;Are you currently working/studying from home because of the COVID-19 outbreak?&#39; == &#39;No&#39;)</code></pre>
 <pre><code>## [1] 347</code></pre>
 <pre class="r"><code>sum(data1$&#39;Are you currently working/studying from home because of the COVID-19 outbreak?&#39; == &#39;Yes&#39;)</code></pre>
@@ -443,12 +480,34 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##                                             197 
 ##                           I was tested positive 
 ##                                              64</code></pre>
+<p>#correct knowledge of their status</p>
+<pre class="r"><code>data1 %&gt;% 
+     group_by( `Since the beginning of the COVID-19 outbreak, do you have information on your infection status?` ) %&gt;% 
+     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   `Since the beginning of the COVID-19 outbreak, do you have informatio… percent
+##   &lt;chr&gt;                                                                    &lt;dbl&gt;
+## 1 I was not tested / I don&#39;t know my test results                          63.0 
+## 2 I was tested negative                                                    27.9 
+## 3 I was tested positive                                                     9.07</code></pre>
 <pre class="r"><code>table(data1$`How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5`)</code></pre>
 <pre><code>## 
 ## 1=Not at all worried   2=A little worried 3=Moderately worried 
 ##                  125                  256                  230 
 ##       4=Very worried  5=Extremely worried 
 ##                   77                   18</code></pre>
+<p>#worried about re-infection</p>
+<pre class="r"><code>data1 %&gt;% 
+     group_by( `How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5` ) %&gt;% 
+     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   `How worried/fearful are you about becoming (re)infected by the coron… percent
+##   &lt;chr&gt;                                                                    &lt;dbl&gt;
+## 1 1=Not at all worried                                                     17.7 
+## 2 2=A little worried                                                       36.3 
+## 3 3=Moderately worried                                                     32.6 
+## 4 4=Very worried                                                           10.9 
+## 5 5=Extremely worried                                                       2.55</code></pre>
 <pre class="r"><code>table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Heart disease`)</code></pre>
 <pre><code>## 
 ## No I Don&#39;t have this Disease   X- Yes I have this Disease 
@@ -483,6 +542,14 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##                                                   554 
 ## X-  I have #at_least_one_previously_mentioned Disease 
 ##                                                   152</code></pre>
+<pre class="r"><code>data1 %&gt;% 
+     group_by( `Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above` ) %&gt;% 
+     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   `Do you have any of the following chronic/underlying diseases? (many … percent
+##   &lt;chr&gt;                                                                    &lt;dbl&gt;
+## 1 I dont have #any_of_the_previously_mentioned Disease                      78.5
+## 2 X-  I have #at_least_one_previously_mentioned Disease                     21.5</code></pre>
 <pre class="r"><code>table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Social distancing of at least 1.5m`)</code></pre>
 <pre><code>## 
 ## No, I don&#39;t followed this measure    X- Yes I followed this measure 
@@ -505,6 +572,14 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##                                                             17 
 ##    X-Yes, I followed #any_of_the_previously_mentioned measures 
 ##                                                            689</code></pre>
+<pre class="r"><code>data1 %&gt;% 
+     group_by( `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above` ) %&gt;% 
+     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   `During the past 7 days, have you been observing any of the following… percent
+##   &lt;chr&gt;                                                                    &lt;dbl&gt;
+## 1 No, I don&#39;t followed #any_of_the_previously_mentioned measures            2.41
+## 2 X-Yes, I followed #any_of_the_previously_mentioned measures              97.6</code></pre>
 <pre class="r"><code>table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Feeling down, depressed, or hopeless (low spirits)`)</code></pre>
 <pre><code>## 
 ## More than half the days        Nearly every day              Not at all 
