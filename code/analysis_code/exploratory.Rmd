@@ -9,6 +9,7 @@ output: html_document
 library(ggplot2)
 library(tidyverse)
 library("readxl")
+library(dplyr)
 library(here)
 ```
 
@@ -17,7 +18,6 @@ library(here)
 data_location <- here::here("data","processed_data","processeddata.rds")
 data1 <- readRDS(data_location)
 ```
-
 
 #I want to see how many NA values are there for each column. So, I wrote the following code. For manuscript we dont need it.
 ```{r}
@@ -67,29 +67,31 @@ data1 %>%
 ```
 #number of people for each educational category
 ```{r}
-table(data1$`Highest educational level`)
+table(data1$`education`)
 ```
 ```{r}
-sum(data1$'Highest educational level' == 'Primary')
-sum(data1$'Highest educational level' == 'Secondary')
-sum(data1$'Highest educational level' == 'University Postgraduate degree holder')
-sum(data1$'Highest educational level' == 'University Undergraduate degree holder')
+sum(data1$'education' == 'Primary')
+sum(data1$'education' == 'Secondary')
+sum(data1$'education' == 'University Postgraduate degree holder')
+sum(data1$'education' == 'University Undergraduate degree holder')
 ```
 #percentage of people for each student category
 ```{r}
 data1 %>% 
-     group_by( `Highest educational level` ) %>% 
+     group_by( `education` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 #student/worker in the heathcare sector?
 ```{r}
-table(data1$`Are you a student or worker in the healthcare sector?`)
+table(data1$`student/heathworker`)
 ```
+
+      
 #percentage of student/health worker
 
 ```{r}
 data1 %>% 
-     group_by( `Are you a student or worker in the healthcare sector?` ) %>% 
+     group_by( `student/heathworker` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 
@@ -101,79 +103,87 @@ table(data1$`Who do you currently live with in the same household? Please select
 table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: Less than 12 years`)
 ```
 ```{r}
-table(data1$`Which of the following categories best describes your current socio-economic situation?`)
+table(data1$`economic_status`)
 ```
 ```{r}
-sum(data1$'Which of the following categories best describes your current socio-economic situation?' == 'High income category')
-sum(data1$'Which of the following categories best describes your current socio-economic situation?' == 'Low income category')
-sum(data1$'Which of the following categories best describes your current socio-economic situation?' == 'Lower middle income category')
-sum(data1$'Which of the following categories best describes your current socio-economic situation?' == 'Upper middle income category ')
+sum(data1$'economic_status' == 'High income category')
+sum(data1$'economic_status' == 'Low income category')
+sum(data1$'economic_status' == 'Lower middle income category')
+sum(data1$'economic_status' == 'Upper middle income category ')
 ```
 
 #percentage of income category?
 ```{r}
 data1 %>% 
-     group_by( `Which of the following categories best describes your current socio-economic situation?` ) %>% 
+     group_by( `economic_status` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 ```{r}
-table(data1$`Do you live in:`)
+table(data1$`residence`)
 ```
 ```{r}
-sum(data1$'Do you live in:' == 'A rural place / village')
-sum(data1$'Do you live in:' == 'A Sub-urban setting / urban slum')
-sum(data1$'Do you live in:' == 'An urban setting / city / town')
+sum(data1$'residence' == 'A rural place / village')
+sum(data1$'residence' == 'A Sub-urban setting / urban slum')
+sum(data1$'residence' == 'An urban setting / city / town')
 ```
 #percentage of living setup?
 ```{r}
 data1 %>% 
-     group_by( `Do you live in:` ) %>% 
+     group_by( `residence` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
+
 ```{r}
-table(data1$`Which source of COVID-19 information/advice do you trust the most?`)
+table(data1$`trusted_source`)
 ```
 #most trusted source?
 ```{r}
 data1 %>% 
-     group_by( `Which source of COVID-19 information/advice do you trust the most?` ) %>% 
+     group_by( `trusted_source` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 
 
 ```{r}
-sum(data1$'Are you currently working/studying from home because of the COVID-19 outbreak?' == 'No')
-sum(data1$'Are you currently working/studying from home because of the COVID-19 outbreak?' == 'Yes')
+sum(data1$'work_from_home' == 'No')
+sum(data1$'work_from_home' == 'Yes')
 ```
 
 #percentage of work from home or not?
 ```{r}
 data1 %>% 
-     group_by( `Are you currently working/studying from home because of the COVID-19 outbreak?` ) %>% 
+     group_by( `work_from_home` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 #Descriptive analysis for each question?
 ```{r}
-table(data1$`Have you been quarantined (either at home or else where) at any point in time during the Covid-19 epidemic?`)
+table(data1$`quarantined_or_not`)
 ```
+#Quarantined or not
 ```{r}
-table(data1$`Since the beginning of the COVID-19 outbreak, do you have information on your infection status?`)
+data1 %>% 
+     group_by( `quarantined_or_not` ) %>% 
+     summarise( percent = 100 * n() / nrow( data1) )
+```
+
+```{r}
+table(data1$`infection_status_info`)
 ```
 #correct knowledge of their status
 ```{r}
 data1 %>% 
-     group_by( `Since the beginning of the COVID-19 outbreak, do you have information on your infection status?` ) %>% 
+     group_by( `infection_status_info` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 
 
 ```{r}
-table(data1$`How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5`)
+table(data1$`worry_level`)
 ```
 #worried about re-infection
 ```{r}
 data1 %>% 
-     group_by( `How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5` ) %>% 
+     group_by( `worry_level` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 
@@ -305,3 +315,5 @@ table(data1$`How important is it to you that by getting the COVID-19 vaccine, yo
 ```{r}
 table(data1$`I fully understand what this study is about, and I freely consent to participate. All the information I provide can be used by researchers to better understand coronavirus disease in my country.`)
 ```
+
+
