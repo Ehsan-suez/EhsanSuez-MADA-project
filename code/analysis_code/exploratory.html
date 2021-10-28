@@ -189,6 +189,9 @@ library(here)</code></pre>
 <p>#Read data</p>
 <pre class="r"><code>data_location &lt;- here::here(&quot;data&quot;,&quot;processed_data&quot;,&quot;processeddata.rds&quot;)
 data1 &lt;- readRDS(data_location)</code></pre>
+<p>#check if certain column is factor or not</p>
+<pre class="r"><code>is.factor(data1$Sex)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 <p>#I want to see how many NA values are there for each column. So, I wrote the following code. For manuscript we dont need it.</p>
 <pre class="r"><code>cbind(
       lapply(
@@ -276,7 +279,7 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 <pre class="r"><code>sd(data1$Age)</code></pre>
 <pre><code>## [1] 10.83175</code></pre>
 <p>#For each age group, whats their percentage?</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code> data1 %&gt;% 
      group_by(Age) %&gt;%
      summarise( percent = 100 * n() / nrow( data1) )</code></pre>
 <pre><code>## # A tibble: 53 × 2
@@ -293,34 +296,49 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##  9    26    8.07
 ## 10    27    4.53
 ## # … with 43 more rows</code></pre>
-<p>#people over 40</p>
-<pre class="r"><code>data1 %&gt;% 
-     dplyr::filter(Age &gt; 40 ) %&gt;%
+<p>#people below 35</p>
+<pre class="r"><code>age_summary = data1 %&gt;% 
+     dplyr::filter(Age &lt; 36 ) %&gt;%
      group_by(Age) %&gt;%
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
-<pre><code>## # A tibble: 30 × 2
+     summarise( percent = 100 * n() / nrow( data1) )
+print(age_summary)</code></pre>
+<pre><code>## # A tibble: 18 × 2
 ##      Age percent
 ##    &lt;dbl&gt;   &lt;dbl&gt;
-##  1    41   0.992
-##  2    42   1.56 
-##  3    43   0.708
-##  4    44   0.850
-##  5    45   0.992
-##  6    46   0.708
-##  7    47   1.42 
-##  8    48   0.708
-##  9    49   0.283
-## 10    50   0.142
-## # … with 20 more rows</code></pre>
+##  1    18    1.42
+##  2    19    2.12
+##  3    20    4.96
+##  4    21    4.39
+##  5    22    4.25
+##  6    23    5.95
+##  7    24    5.95
+##  8    25    9.77
+##  9    26    8.07
+## 10    27    4.53
+## 11    28    3.68
+## 12    29    4.25
+## 13    30    3.12
+## 14    31    2.12
+## 15    32    5.67
+## 16    33    3.68
+## 17    34    2.55
+## 18    35    2.41</code></pre>
+<pre class="r"><code>df1 = data.frame(age_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable.rds&quot;)
+saveRDS(df1, file = summarytable_file)</code></pre>
 <p>#percentage of male and female</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>sex_summary =data1 %&gt;% 
      group_by( Sex ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(sex_summary)</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   Sex    percent
 ##   &lt;chr&gt;    &lt;dbl&gt;
 ## 1 Female    45.2
 ## 2 Male      54.8</code></pre>
+<pre class="r"><code>df2 = data.frame(sex_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable2.rds&quot;)
+saveRDS(df2, file = summarytable_file)</code></pre>
 <p>#number of people for each educational category</p>
 <pre class="r"><code>table(data1$`education`)</code></pre>
 <pre><code>## 
@@ -337,9 +355,10 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 <pre class="r"><code>sum(data1$&#39;education&#39; == &#39;University Undergraduate degree holder&#39;)</code></pre>
 <pre><code>## [1] 383</code></pre>
 <p>#percentage of people for each student category</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>education_summary = data1 %&gt;% 
      group_by( `education` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(education_summary)</code></pre>
 <pre><code>## # A tibble: 4 × 2
 ##   education                              percent
 ##   &lt;chr&gt;                                    &lt;dbl&gt;
@@ -347,6 +366,9 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ## 2 Secondary                               21.1  
 ## 3 University Postgraduate degree holder   23.8  
 ## 4 University Undergraduate degree holder  54.2</code></pre>
+<pre class="r"><code>df3 = data.frame(education_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable3.rds&quot;)
+saveRDS(df3, file = summarytable_file)</code></pre>
 <p>#student/worker in the heathcare sector?</p>
 <pre class="r"><code>table(data1$`student/heathworker`)</code></pre>
 <pre><code>## 
@@ -393,9 +415,10 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 <pre class="r"><code>sum(data1$&#39;economic_status&#39; == &#39;Upper middle income category &#39;)</code></pre>
 <pre><code>## [1] 0</code></pre>
 <p>#percentage of income category?</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>income_summary = data1 %&gt;% 
      group_by( `economic_status` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(income_summary)</code></pre>
 <pre><code>## # A tibble: 4 × 2
 ##   economic_status              percent
 ##   &lt;chr&gt;                          &lt;dbl&gt;
@@ -403,6 +426,9 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ## 2 Low income category             7.65
 ## 3 Lower middle income category   36.7 
 ## 4 Upper middle income category   49.3</code></pre>
+<pre class="r"><code>df4 = data.frame(income_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable4.rds&quot;)
+saveRDS(df4, file = summarytable_file)</code></pre>
 <pre class="r"><code>table(data1$`residence`)</code></pre>
 <pre><code>## 
 ##          A rural place / village A Sub-urban setting / urban slum 
@@ -416,15 +442,19 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 <pre class="r"><code>sum(data1$&#39;residence&#39; == &#39;An urban setting / city / town&#39;)</code></pre>
 <pre><code>## [1] 445</code></pre>
 <p>#percentage of living setup?</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>residence_summary = data1 %&gt;% 
      group_by( `residence` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(residence_summary)</code></pre>
 <pre><code>## # A tibble: 3 × 2
 ##   residence                        percent
 ##   &lt;chr&gt;                              &lt;dbl&gt;
 ## 1 A rural place / village             9.07
 ## 2 A Sub-urban setting / urban slum   27.9 
 ## 3 An urban setting / city / town     63.0</code></pre>
+<pre class="r"><code>df5 = data.frame(residence_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable5.rds&quot;)
+saveRDS(df5, file = summarytable_file)</code></pre>
 <pre class="r"><code>table(data1$`trusted_source`)</code></pre>
 <pre><code>## 
 ##                                Family and friends 
@@ -442,9 +472,10 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##   Social Media (WhatsApp, Facebook, Twitter, etc) 
 ##                                               151</code></pre>
 <p>#most trusted source?</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>source_summary = data1 %&gt;% 
      group_by( `trusted_source` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(source_summary)</code></pre>
 <pre><code>## # A tibble: 7 × 2
 ##   trusted_source                                    percent
 ##   &lt;chr&gt;                                               &lt;dbl&gt;
@@ -455,33 +486,44 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ## 5 Radio / TV                                          30.7 
 ## 6 Religious authorities (Pastor, Priest, Imam, etc)    2.27
 ## 7 Social Media (WhatsApp, Facebook, Twitter, etc)     21.4</code></pre>
+<pre class="r"><code>df6 = data.frame(source_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable6.rds&quot;)
+saveRDS(df6, file = summarytable_file)</code></pre>
 <pre class="r"><code>sum(data1$&#39;work_from_home&#39; == &#39;No&#39;)</code></pre>
 <pre><code>## [1] 347</code></pre>
 <pre class="r"><code>sum(data1$&#39;work_from_home&#39; == &#39;Yes&#39;)</code></pre>
 <pre><code>## [1] 359</code></pre>
 <p>#percentage of work from home or not?</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>work_From_home_or_not_Summary = data1 %&gt;% 
      group_by( `work_from_home` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(work_From_home_or_not_Summary)</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   work_from_home percent
 ##   &lt;chr&gt;            &lt;dbl&gt;
 ## 1 No                49.2
 ## 2 Yes               50.8</code></pre>
+<pre class="r"><code>df7 = data.frame(work_From_home_or_not_Summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable7.rds&quot;)
+saveRDS(df7, file = summarytable_file)</code></pre>
 <p>#Descriptive analysis for each question?</p>
 <pre class="r"><code>table(data1$`quarantined_or_not`)</code></pre>
 <pre><code>## 
 ##  No Yes 
 ## 299 407</code></pre>
 <p>#Quarantined or not</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>q_or_not_summary = data1 %&gt;% 
      group_by( `quarantined_or_not` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(q_or_not_summary)</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   quarantined_or_not percent
 ##   &lt;chr&gt;                &lt;dbl&gt;
 ## 1 No                    42.4
 ## 2 Yes                   57.6</code></pre>
+<pre class="r"><code>df8 = data.frame(q_or_not_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable8.rds&quot;)
+saveRDS(df8, file = summarytable_file)</code></pre>
 <pre class="r"><code>table(data1$`infection_status_info`)</code></pre>
 <pre><code>## 
 ## I was not tested / I don&#39;t know my test results 
@@ -491,25 +533,24 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##                           I was tested positive 
 ##                                              64</code></pre>
 <p>#correct knowledge of their status</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>test_status_summary = data1 %&gt;% 
      group_by( `infection_status_info` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(test_status_summary)</code></pre>
 <pre><code>## # A tibble: 3 × 2
 ##   infection_status_info                           percent
 ##   &lt;chr&gt;                                             &lt;dbl&gt;
 ## 1 I was not tested / I don&#39;t know my test results   63.0 
 ## 2 I was tested negative                             27.9 
 ## 3 I was tested positive                              9.07</code></pre>
-<pre class="r"><code>table(data1$`worry_level`)</code></pre>
-<pre><code>## 
-## 1=Not at all worried   2=A little worried 3=Moderately worried 
-##                  125                  256                  230 
-##       4=Very worried  5=Extremely worried 
-##                   77                   18</code></pre>
+<pre class="r"><code>df9 = data.frame(test_status_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable9.rds&quot;)
+saveRDS(df9, file = summarytable_file)</code></pre>
 <p>#worried about re-infection</p>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>worry_level_summary = data1 %&gt;% 
      group_by( `worry_level` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(worry_level_summary)</code></pre>
 <pre><code>## # A tibble: 5 × 2
 ##   worry_level          percent
 ##   &lt;chr&gt;                  &lt;dbl&gt;
@@ -518,6 +559,15 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ## 3 3=Moderately worried   32.6 
 ## 4 4=Very worried         10.9 
 ## 5 5=Extremely worried     2.55</code></pre>
+<pre class="r"><code>df10 = data.frame(worry_level_summary)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable10.rds&quot;)
+saveRDS(df10, file = summarytable_file)</code></pre>
+<pre class="r"><code>table(data1$`worry_level`)</code></pre>
+<pre><code>## 
+## 1=Not at all worried   2=A little worried 3=Moderately worried 
+##                  125                  256                  230 
+##       4=Very worried  5=Extremely worried 
+##                   77                   18</code></pre>
 <pre class="r"><code>table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Heart disease`)</code></pre>
 <pre><code>## 
 ## No I Don&#39;t have this Disease   X- Yes I have this Disease 
@@ -552,14 +602,18 @@ rownames(subset(df, df$V1 != 0))</code></pre>
 ##                                                   554 
 ## X-  I have #at_least_one_previously_mentioned Disease 
 ##                                                   152</code></pre>
-<pre class="r"><code>data1 %&gt;% 
+<pre class="r"><code>chronic_disease_history = data1 %&gt;% 
      group_by( `Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above` ) %&gt;% 
-     summarise( percent = 100 * n() / nrow( data1) )</code></pre>
+     summarise( percent = 100 * n() / nrow( data1) )
+print(chronic_disease_history)</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   `Do you have any of the following chronic/underlying diseases? (many … percent
 ##   &lt;chr&gt;                                                                    &lt;dbl&gt;
 ## 1 I dont have #any_of_the_previously_mentioned Disease                      78.5
 ## 2 X-  I have #at_least_one_previously_mentioned Disease                     21.5</code></pre>
+<pre class="r"><code>df11 = data.frame(chronic_disease_history)
+summarytable_file = here(&quot;results&quot;, &quot;summarytable11.rds&quot;)
+saveRDS(df11, file = summarytable_file)</code></pre>
 <pre class="r"><code>table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Social distancing of at least 1.5m`)</code></pre>
 <pre><code>## 
 ## No, I don&#39;t followed this measure    X- Yes I followed this measure 

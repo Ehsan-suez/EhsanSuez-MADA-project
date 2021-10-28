@@ -1,5 +1,5 @@
 ---
-title: "Using Andersen’s model of health care utilization to assess factors associated with COVID-19 testing among adults in nine low-and middle-income countries: an online survey"
+title: "Using Andersen’s model of health care utilization to assess factors associated with COVID-19 testing among adults in Bangladesh: an online survey"
 subtitle: ""
 author: Ehsan Suez
 date: "`r Sys.Date()`"
@@ -53,10 +53,8 @@ Sociodemographic factors included age, sex, country of residence, educational le
 _COVID-19 preventive measures_
 Participants were asked, “During the past 7 days, have you been observing any of the following preventive measures against COVID-19? 1) Social distancing of at least 1.5m, 2) Wearing a face mask, 3) Hand hygiene (regular handwashing with soap or using hand gel), and 4) Coughing hygiene (covering the mouth when coughing or sneezing). A composite non-adherence to all four COVID-19 preventive measure was calculated by coding each negative response with “1”, summing scores ranging from 0-4 (Cronbach’s alpha 0.7).
 
-_Enabling/disabling factors_
+_Enabling/d_
 Enabling factors include self-perceived socio-economic status, self-perceived area of residence, being a student or worker in the health care sector, source of COVID-19 information/advice most trusted (coded as other, including family and friends, radio/TV, social media, religious authorities and health personnel.
-
-_Disabling factors_ include the assessment of psychological distress with the Patient Health Questionnaire (PHQ-4) for Depression and Anxiety symptoms [Kroenke/ Löwe]. The severity of psychological distress is categorized as normal (0-2), mild (3-5). moderate (6-8) and severe (9-12) based on the PHQ-4 scores.
 
 _Need for care factors_ include two questions on 1) the level of fear/worry of being infected with COVID-19 (ranging from 1=not at all worried to 5=extremely worried), and 2) having been quarantined (either at home or elsewhere) at any point in time during the COVID-19 epidemic.
 
@@ -69,23 +67,83 @@ Descriptive statistics will be used to describe the study population. Logistic r
 ## Data aquisition
 _As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
 
-## Data import and cleaning_ [Here I mostly covered descriptive analysis]
+## Data import and cleaning_ html_document
 ---
-title: "try"
-author: "Ehsan"
-date: "10/6/2021"
-output: html_document
----
-
+```{r}
+library(here)
+```
 ## Exploratory analysis
 
 _Use a combination of text/tables/figures to explore and describe your data. You should produce plots or tables or other summary quantities for the most interesting/important quantities in your data. Depending on the total number of variables in your dataset, explore all or some of the others. FIgures produced here might be histograms or density plots, correlation plots, etc. Tables might summarize your data._
 
+
+
+```{r summarytable,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable.rds")
+knitr::kable(resulttable, caption = 'Age Percentage of Participants.')
+```
+78.9% of total participants are less than or equal  to 35 years old. 
+
+```{r summarytable2,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable2.rds")
+knitr::kable(resulttable, caption = 'Sex Percentage of Participants.')
+```
+
+```{r summarytable3,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable3.rds")
+knitr::kable(resulttable, caption = 'Education Background Percentage of Participants.')
+```
+
+```{r summarytable4,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable4.rds")
+knitr::kable(resulttable, caption = 'Income Percentage of Participants.')
+```
+
+```{r summarytable5,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable5.rds")
+knitr::kable(resulttable, caption = 'Residence Percentage of Participants.')
+```
+
+```{r summarytable6,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable6.rds")
+knitr::kable(resulttable, caption = 'Source of information Percentage of Participants.')
+```
+
+```{r summarytable7,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable7.rds")
+knitr::kable(resulttable, caption = 'Percentage of Participants working from home or not.')
+```
+
+```{r summarytable8,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable8.rds")
+knitr::kable(resulttable, caption = 'Percentage of Participants quarantined or not at some stage.')
+```
+
+```{r summarytable9,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable9.rds")
+knitr::kable(resulttable, caption = 'Percentage of covid test status of the participants.')
+```
+
+```{r summarytable10,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable10.rds")
+knitr::kable(resulttable, caption = "Percentage of participants' worry level about (re)infection with COVID-19.")
+```
+
+```{r summarytable11,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable11.rds")
+knitr::kable(resulttable, caption = "Percentage of participants' history of chronic disease")
+```
+
 _Continue by creating plots or tables of the outcome(s) of interest and the predictor/exposure/input variables you are most interested in. If your dataset is small, you can do that for all variables. Plots produced here can be scatterplots, boxplots, violinplots, etc. Tables can be simple 2x2 tables or larger ones._
+
+
+
+
+
 
 _To get some further insight into your data, if reasonable you could compute simple statistics (e.g. t-tests, simple regression model with 1 predictor, etc.) to look for associations between your outcome(s) and each individual predictor variable. Though note that unless you pre-specified the outcome and main exposure, any "p<0.05 means statistical significance" interpretation is not valid._
 
-Table \@ref(tab:summarytable) shows a table summarizing the data.
+
 
 
 

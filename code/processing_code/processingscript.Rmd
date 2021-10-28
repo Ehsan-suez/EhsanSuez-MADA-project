@@ -43,8 +43,15 @@ processeddata <- rawdata %>% rename ("education" = `Highest educational level`,
 ```
 
 
+```{r}
+str(processeddata)
+```
 
-
+#```{r}
+#index <- 1:ncol(processeddata)
+#processeddata[ , index] <- lapply(processeddata[ , index], as.factor)
+#str(processeddata)
+#```
 
 
 

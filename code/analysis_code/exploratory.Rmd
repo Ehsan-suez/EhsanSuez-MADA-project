@@ -19,6 +19,11 @@ data_location <- here::here("data","processed_data","processeddata.rds")
 data1 <- readRDS(data_location)
 ```
 
+#check if certain column is factor or not
+```{r}
+is.factor(data1$Sex)
+```
+
 #I want to see how many NA values are there for each column. So, I wrote the following code. For manuscript we dont need it.
 ```{r}
 cbind(
@@ -45,26 +50,41 @@ sd(data1$Age)
 ```
 #For each age group, whats their percentage?
 ```{r}
-data1 %>% 
+ data1 %>% 
      group_by(Age) %>%
      summarise( percent = 100 * n() / nrow( data1) )
-     
+
 ```
-#people over 40
+#people below 35
 ```{r}
-data1 %>% 
-     dplyr::filter(Age > 40 ) %>%
+age_summary = data1 %>% 
+     dplyr::filter(Age < 36 ) %>%
      group_by(Age) %>%
      summarise( percent = 100 * n() / nrow( data1) )
-     
+print(age_summary)
 ```
 
+```{r}
+df1 = data.frame(age_summary)
+summarytable_file = here("results", "summarytable.rds")
+saveRDS(df1, file = summarytable_file)
+```
 #percentage of male and female
 ```{r}
-data1 %>% 
+sex_summary =data1 %>% 
      group_by( Sex ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(sex_summary)
 ```
+```{r}
+df2 = data.frame(sex_summary)
+summarytable_file = here("results", "summarytable2.rds")
+saveRDS(df2, file = summarytable_file)
+```
+
+
+
+
 #number of people for each educational category
 ```{r}
 table(data1$`education`)
@@ -77,10 +97,18 @@ sum(data1$'education' == 'University Undergraduate degree holder')
 ```
 #percentage of people for each student category
 ```{r}
-data1 %>% 
+education_summary = data1 %>% 
      group_by( `education` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(education_summary)
 ```
+
+```{r}
+df3 = data.frame(education_summary)
+summarytable_file = here("results", "summarytable3.rds")
+saveRDS(df3, file = summarytable_file)
+```
+
 #student/worker in the heathcare sector?
 ```{r}
 table(data1$`student/heathworker`)
@@ -114,10 +142,17 @@ sum(data1$'economic_status' == 'Upper middle income category ')
 
 #percentage of income category?
 ```{r}
-data1 %>% 
+income_summary = data1 %>% 
      group_by( `economic_status` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(income_summary)
 ```
+```{r}
+df4 = data.frame(income_summary)
+summarytable_file = here("results", "summarytable4.rds")
+saveRDS(df4, file = summarytable_file)
+```
+
 ```{r}
 table(data1$`residence`)
 ```
@@ -128,9 +163,15 @@ sum(data1$'residence' == 'An urban setting / city / town')
 ```
 #percentage of living setup?
 ```{r}
-data1 %>% 
+residence_summary = data1 %>% 
      group_by( `residence` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(residence_summary)
+```
+```{r}
+df5 = data.frame(residence_summary)
+summarytable_file = here("results", "summarytable5.rds")
+saveRDS(df5, file = summarytable_file)
 ```
 
 ```{r}
@@ -138,11 +179,16 @@ table(data1$`trusted_source`)
 ```
 #most trusted source?
 ```{r}
-data1 %>% 
+source_summary = data1 %>% 
      group_by( `trusted_source` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(source_summary)
 ```
-
+```{r}
+df6 = data.frame(source_summary)
+summarytable_file = here("results", "summarytable6.rds")
+saveRDS(df6, file = summarytable_file)
+```
 
 ```{r}
 sum(data1$'work_from_home' == 'No')
@@ -151,19 +197,34 @@ sum(data1$'work_from_home' == 'Yes')
 
 #percentage of work from home or not?
 ```{r}
-data1 %>% 
+work_From_home_or_not_Summary = data1 %>% 
      group_by( `work_from_home` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(work_From_home_or_not_Summary)
 ```
+```{r}
+df7 = data.frame(work_From_home_or_not_Summary)
+summarytable_file = here("results", "summarytable7.rds")
+saveRDS(df7, file = summarytable_file)
+```
+
+
+
 #Descriptive analysis for each question?
 ```{r}
 table(data1$`quarantined_or_not`)
 ```
 #Quarantined or not
 ```{r}
-data1 %>% 
+q_or_not_summary = data1 %>% 
      group_by( `quarantined_or_not` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(q_or_not_summary)
+```
+```{r}
+df8 = data.frame(q_or_not_summary)
+summarytable_file = here("results", "summarytable8.rds")
+saveRDS(df8, file = summarytable_file)
 ```
 
 ```{r}
@@ -171,20 +232,31 @@ table(data1$`infection_status_info`)
 ```
 #correct knowledge of their status
 ```{r}
-data1 %>% 
+test_status_summary = data1 %>% 
      group_by( `infection_status_info` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(test_status_summary)
 ```
-
-
 ```{r}
-table(data1$`worry_level`)
+df9 = data.frame(test_status_summary)
+summarytable_file = here("results", "summarytable9.rds")
+saveRDS(df9, file = summarytable_file)
 ```
 #worried about re-infection
 ```{r}
-data1 %>% 
+worry_level_summary = data1 %>% 
      group_by( `worry_level` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(worry_level_summary)
+```
+```{r}
+df10 = data.frame(worry_level_summary)
+summarytable_file = here("results", "summarytable10.rds")
+saveRDS(df10, file = summarytable_file)
+```
+
+```{r}
+table(data1$`worry_level`)
 ```
 
 ```{r}
@@ -212,11 +284,17 @@ table(data1$`Do you have any of the following chronic/underlying diseases? (many
 table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above`)
 ```
 ```{r}
-data1 %>% 
+chronic_disease_history = data1 %>% 
      group_by( `Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
+print(chronic_disease_history)
 ```
 
+```{r}
+df11 = data.frame(chronic_disease_history)
+summarytable_file = here("results", "summarytable11.rds")
+saveRDS(df11, file = summarytable_file)
+```
 
 
 ```{r}
