@@ -13,3 +13,18 @@ library(dotwhisker)
 library(broom.mixed)
 library(here)
 ```
+
+```{r}
+data_location <- here::here("data","processed_data","processeddata2.rds")
+```
+
+#load data. 
+```{r}
+mydata <- readRDS(data_location)
+mydata
+```
+
+# this is the linear model with ordinary least square method
+```{r}
+is.factor(mydata$infection_status_info)
+```

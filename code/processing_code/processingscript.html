@@ -191,6 +191,15 @@ library(dplyr) #for data processing</code></pre>
 ##     intersect, setdiff, setequal, union</code></pre>
 <pre class="r"><code>library(here) #to set paths</code></pre>
 <pre><code>## here() starts at /Users/ehsansuez/Study /MADA_2021/EhsanSuez-MADA-project</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.4     ✓ stringr 1.4.0
+## ✓ tidyr   1.1.3     ✓ forcats 0.5.1
+## ✓ readr   2.0.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>#path to data #note the use of the here() package and not absolute paths</p>
 <pre class="r"><code>data_location &lt;- here::here(&quot;data&quot;,&quot;raw_data&quot;,&quot;Covid Vaccine data_Bangladesh_Abu_Sayeed.xlsx&quot;)</code></pre>
 <p>#but it adds typing. You can do it either way.</p>
@@ -204,7 +213,14 @@ library(dplyr) #for data processing</code></pre>
                                &quot;quarantined_or_not&quot; = `Have you been quarantined (either at home or else where) at any point in time during the Covid-19 epidemic?`,
                                &quot;infection_status_info&quot; = `Since the beginning of the COVID-19 outbreak, do you have information on your infection status?`,
                                &quot;worry_level&quot; = `How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5`,)</code></pre>
-<pre class="r"><code>str(processeddata)</code></pre>
+</div>
+<div id="location-to-save-file" class="section level1">
+<h1>location to save file</h1>
+<pre class="r"><code>save_data_location &lt;- here::here(&quot;data&quot;,&quot;processed_data&quot;,&quot;processeddata.rds&quot;)</code></pre>
+<pre class="r"><code>saveRDS(processeddata, file = save_data_location)</code></pre>
+<pre class="r"><code>processeddata2 &lt;- processeddata %&gt;%
+                  mutate (infection_status_info = factor(infection_status_info)) </code></pre>
+<pre class="r"><code>str(processeddata2)</code></pre>
 <pre><code>## tibble [706 × 59] (S3: tbl_df/tbl/data.frame)
 ##  $ Serial number                                                                                                                                                                                           : num [1:706] 1712 1718 1723 5703 9034 ...
 ##  $ Created                                                                                                                                                                                                 : POSIXct[1:706], format: &quot;2021-01-02 13:18:04&quot; &quot;2021-01-02 17:19:00&quot; ...
@@ -222,7 +238,7 @@ library(dplyr) #for data processing</code></pre>
 ##  $ trusted_source                                                                                                                                                                                          : chr [1:706] &quot;Other&quot; &quot;Health personnel&quot; &quot;Health personnel&quot; &quot;Health personnel&quot; ...
 ##  $ work_from_home                                                                                                                                                                                          : chr [1:706] &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;No&quot; ...
 ##  $ quarantined_or_not                                                                                                                                                                                      : chr [1:706] &quot;Yes&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
-##  $ infection_status_info                                                                                                                                                                                   : chr [1:706] &quot;I was not tested / I don&#39;t know my test results&quot; &quot;I was not tested / I don&#39;t know my test results&quot; &quot;I was not tested / I don&#39;t know my test results&quot; &quot;I was tested negative&quot; ...
+##  $ infection_status_info                                                                                                                                                                                   : Factor w/ 3 levels &quot;I was not tested / I don&#39;t know my test results&quot;,..: 1 1 1 2 1 3 2 3 2 3 ...
 ##  $ worry_level                                                                                                                                                                                             : chr [1:706] &quot;3=Moderately worried&quot; &quot;3=Moderately worried&quot; &quot;3=Moderately worried&quot; &quot;2=A little worried&quot; ...
 ##  $ Do you have any of the following chronic/underlying diseases? (many answers possible): Heart disease                                                                                                    : chr [1:706] &quot;No I Don&#39;t have this Disease&quot; &quot;No I Don&#39;t have this Disease&quot; &quot;No I Don&#39;t have this Disease&quot; &quot;No I Don&#39;t have this Disease&quot; ...
 ##  $ Do you have any of the following chronic/underlying diseases? (many answers possible): Hypertension                                                                                                     : chr [1:706] &quot;No I Don&#39;t have this Disease&quot; &quot;No I Don&#39;t have this Disease&quot; &quot;No I Don&#39;t have this Disease&quot; &quot;No I Don&#39;t have this Disease&quot; ...
@@ -265,29 +281,7 @@ library(dplyr) #for data processing</code></pre>
 ##  $ How important is it to you that by getting the COVID-19 vaccine, you would protect your own health?: On a scale of 1 to 5                                                                               : chr [1:706] &quot;5=Extremely important&quot; &quot;5=Extremely important&quot; &quot;4=Very important&quot; &quot;4=Very important&quot; ...
 ##  $ How important is it to you that by getting the COVID-19 vaccine, you would protect the health of other people in your community?: On a scale of 1 to 5                                                  : chr [1:706] &quot;5=Extremely important&quot; &quot;4=Very important&quot; &quot;4=Very important&quot; &quot;4=Very important&quot; ...
 ##  $ I fully understand what this study is about, and I freely consent to participate. All the information I provide can be used by researchers to better understand coronavirus disease in my country.      : chr [1:706] &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...</code></pre>
-<p>#<code>{r} #index &lt;- 1:ncol(processeddata) #processeddata[ , index] &lt;- lapply(processeddata[ , index], as.factor) #str(processeddata) #</code></p>
-</div>
-<div id="save-data-as-rds" class="section level1">
-<h1>save data as RDS</h1>
-</div>
-<div id="i-suggest-you-save-your-processed-and-cleaned-data-as-rds-or-rdardata-files." class="section level1">
-<h1>I suggest you save your processed and cleaned data as RDS or RDA/Rdata files.</h1>
-</div>
-<div id="this-preserves-coding-like-factors-characters-numeric-etc." class="section level1">
-<h1>This preserves coding like factors, characters, numeric, etc.</h1>
-</div>
-<div id="if-you-save-as-csv-that-information-would-get-lost." class="section level1">
-<h1>If you save as CSV, that information would get lost.</h1>
-</div>
-<div id="see-here-for-some-suggestions-on-how-to-store-your-processed-data" class="section level1">
-<h1>See here for some suggestions on how to store your processed data:</h1>
-</div>
-<div id="httpwww.sthda.comenglishwikisaving-data-into-r-data-format-rds-and-rdata" class="section level1">
-<h1><a href="http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata" class="uri">http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata</a></h1>
-</div>
-<div id="location-to-save-file" class="section level1">
-<h1>location to save file</h1>
-<pre class="r"><code>save_data_location &lt;- here::here(&quot;data&quot;,&quot;processed_data&quot;,&quot;processeddata.rds&quot;)</code></pre>
+<pre class="r"><code>save_data_location &lt;- here::here(&quot;data&quot;,&quot;processed_data&quot;,&quot;processeddata2.rds&quot;)</code></pre>
 <pre class="r"><code>saveRDS(processeddata, file = save_data_location)</code></pre>
 </div>
 

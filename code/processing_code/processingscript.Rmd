@@ -15,6 +15,7 @@ output: html_document
 library(readxl) #for loading Excel files
 library(dplyr) #for data processing
 library(here) #to set paths
+library(tidyverse)
 ```
 
 #path to data
@@ -43,28 +44,6 @@ processeddata <- rawdata %>% rename ("education" = `Highest educational level`,
 ```
 
 
-```{r}
-str(processeddata)
-```
-
-#```{r}
-#index <- 1:ncol(processeddata)
-#processeddata[ , index] <- lapply(processeddata[ , index], as.factor)
-#str(processeddata)
-#```
-
-
-
-                     
-
-
-
-# save data as RDS
-# I suggest you save your processed and cleaned data as RDS or RDA/Rdata files. 
-# This preserves coding like factors, characters, numeric, etc. 
-# If you save as CSV, that information would get lost.
-# See here for some suggestions on how to store your processed data:
-# http://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata
 
 # location to save file
 ```{r}
@@ -75,4 +54,22 @@ save_data_location <- here::here("data","processed_data","processeddata.rds")
 saveRDS(processeddata, file = save_data_location)
 ```
 
+```{r}
+processeddata2 <- processeddata %>%
+                  mutate (infection_status_info = factor(infection_status_info)) 
+```
+                             
 
+
+
+```{r}
+str(processeddata2)
+```
+
+```{r}
+save_data_location <- here::here("data","processed_data","processeddata2.rds")
+```
+
+```{r}
+saveRDS(processeddata, file = save_data_location)
+```
