@@ -15,11 +15,9 @@ bibliography: ../references.bib
 csl: ../apa.csl
 ---
 
-The structure below is a possible setup for a data analysis project (including the course project). For a manuscript, adjust as needed.
-
 
 # Summary/Abstract
-_Write a summary of your project._
+I'll write it later.,
 
 
 # Introduction 
@@ -35,30 +33,32 @@ The main question is to find out the key factors associated with covid-19 testin
 
 
 
+
+
 # Methods and Results
 
-_Study design, sample, and procedure_
+_**Study design, sample, and procedure**_
 
 This will be a descriptive cross-sectional online study conducted in Bangladesh between 10 December 2020 to 9 February 2021. Participant inclusion criteria were 18 years and older, any gender, and provision of electronic informed consent. 
 
-_Measures_
+_**Measures**_
 Using Andersen’s model of health care utilization [Andersen 1995], study variables will be categorized into outcome variable, predisposing factors, enabling/disabling factors and need for care factors.
 
-_Outcome variable_
+_**Outcome variable**_
 COVID-19 testing/infection status will be assessed with the question, “Since the beginning of the COVID-19 outbreak, do you have information on your infection status?” Response options were 1=not tested/does not know test results, 2=negative, and 3=positive.
 
-_Predisposing factors_
+_**Predisposing factors**_
 Sociodemographic factors included age, sex, country of residence, educational level, and the (estimated) age(s) of their housemate(s). Chronic/underlying diseases includs heart disease, hypertension, diabetes, cancer, HIV, tuberculosis, and chronic asthma; coded as “0” none and “1” at least presence of one clinically diagnosed condition.
 
-_COVID-19 preventive measures_
+_**COVID-19 preventive measures**_
 Participants were asked, “During the past 7 days, have you been observing any of the following preventive measures against COVID-19? 1) Social distancing of at least 1.5m, 2) Wearing a face mask, 3) Hand hygiene (regular handwashing with soap or using hand gel), and 4) Coughing hygiene (covering the mouth when coughing or sneezing). A composite non-adherence to all four COVID-19 preventive measure was calculated by coding each negative response with “1”, summing scores ranging from 0-4 (Cronbach’s alpha 0.7).
 
-_Enabling/d_
+_**Enabling factors**_
 Enabling factors include self-perceived socio-economic status, self-perceived area of residence, being a student or worker in the health care sector, source of COVID-19 information/advice most trusted (coded as other, including family and friends, radio/TV, social media, religious authorities and health personnel.
 
-_Need for care factors_ include two questions on 1) the level of fear/worry of being infected with COVID-19 (ranging from 1=not at all worried to 5=extremely worried), and 2) having been quarantined (either at home or elsewhere) at any point in time during the COVID-19 epidemic.
+_**Need for care factors**_ include two questions on 1) the level of fear/worry of being infected with COVID-19 (ranging from 1=not at all worried to 5=extremely worried), and 2) having been quarantined (either at home or elsewhere) at any point in time during the COVID-19 epidemic.
 
-_Data analysis_
+_**Data analysis**_
 
 Descriptive statistics will be used to describe the study population. Logistic regression will be used to assess associations between predisposing factors, enabling and disabling factors, need of care factors and COVID-19 testing status, COVID-19 positive versus negative status and COVID-19 positive versus negative and not tested status. Variables significant at <0.05 in univariate analyses were subsequently included in the multivariable logistic regression models. Statistical analyses will conducted using R.
 
@@ -74,76 +74,50 @@ library(here)
 ```
 ## Exploratory analysis
 
-_Use a combination of text/tables/figures to explore and describe your data. You should produce plots or tables or other summary quantities for the most interesting/important quantities in your data. Depending on the total number of variables in your dataset, explore all or some of the others. FIgures produced here might be histograms or density plots, correlation plots, etc. Tables might summarize your data._
+As the infection status information of the participants is the main outcome variable, let's see its distribution among the participants:
 
-
-
-```{r summarytable,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable.rds")
-knitr::kable(resulttable, caption = 'Age Percentage of Participants.')
+```{r resultfigure,  fig.cap='Infection Status Information.', echo=FALSE}
+knitr::include_graphics("../../results/infection_status_info_distribution.png")
 ```
-**78.9% of total participants are less than or equal  to 35 years old.** 
 
-```{r summarytable2,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable2.rds")
-knitr::kable(resulttable, caption = 'Sex Percentage of Participants.')
-```
-**While 45.18% of the participants were female, 54.82% were male.**
-
-```{r summarytable3,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable3.rds")
-knitr::kable(resulttable, caption = 'Education Background Percentage of Participants.')
-```
-**78.05% of the participants had a bachelor or post-bachelor degree**
-```{r summarytable4,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable4.rds")
-knitr::kable(resulttable, caption = 'Income Percentage of Participants.')
-```
-**Almost 50% of the participants belongs to "upper middle income category"**
-```{r summarytable5,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable5.rds")
-knitr::kable(resulttable, caption = 'Residence Percentage of Participants.')
-```
-**Less than 10% of the participants live in a village/rural area**
-```{r summarytable6,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable6.rds")
-knitr::kable(resulttable, caption = 'Source of information Percentage of Participants.')
-```
-**Health professionals and Tv/radio seems to be the most trusted source to the participants.**
-```{r summarytable7,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable7.rds")
-knitr::kable(resulttable, caption = 'Percentage of Participants working from home or not.')
-```
-**Apparently equal half of the participants worked from or not**
-```{r summarytable8,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable8.rds")
-knitr::kable(resulttable, caption = 'Percentage of Participants quarantined or not at some stage.')
-```
-**Major half of the participants did quarantine at some stage during the study**
-```{r summarytable9,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable9.rds")
-knitr::kable(resulttable, caption = 'Percentage of covid test status of the participants.')
-```
-**63% of the participants didn't go through a COVID test**
-```{r summarytable10,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable10.rds")
-knitr::kable(resulttable, caption = "Percentage of participants' worry level about (re)infection with COVID-19.")
-```
-**Almost half of the participants (46%) were moderate or more worried about reinfection**
-```{r summarytable11,  echo=FALSE}
-resulttable=readRDS("../../results/summarytable11.rds")
-knitr::kable(resulttable, caption = "Percentage of participants' history of chronic disease")
-```
-**Only 22% of the participants recorded to have some sort of chronic disease**
-_Continue by creating plots or tables of the outcome(s) of interest and the predictor/exposure/input variables you are most interested in. If your dataset is small, you can do that for all variables. Plots produced here can be scatterplots, boxplots, violinplots, etc. Tables can be simple 2x2 tables or larger ones._
+Among the participants, **78.9%** are less than or equal  to 35 years old. That indicates that majority of the participants tend to be younger. While **45.18%** of the participants were female, **54.82%** were male, which shows less chance of biad due to sex. **78.05%** of the participants had a bachelor or post-bachelor degree, clearly indicating that majority of the participants had pretty good education background. Almost **50%** of the participants belongs to "upper middle income category", indicating that at least half of the participants don't belong to the poorer side. Less than **10%** of the participants live in a village/rural area. Health professionals and Tv/radio seems to be the most trusted source to the participants. Apparently equal half of the participants worked from home or not at some stage of the study. Major half of the participants did quarantine at some stage during the study. **63%** of the participants didn't go through a COVID test. Almost half of the participants **(46%)** were moderate or more worried about reinfection. Only **22%** of the participants recorded to have some sort of chronic disease. **(This data can be accessed/viewd through the "supplementary.rmd" file)**
 
 
+Let's look at the logistic regression analysis and its statistics summary between the **outcome variable** (infection status info) and the three key **predisposing factors** (Age, Sex, Education level).
+```{r summarytable12,  echo=FALSE}
+resulttable=readRDS("../../results/lg_fit_table_predisposing.rds")
+knitr::kable(resulttable, caption = "logistic regression betweem infection status and Key Predisposing Factors")
+```
+
+```{r summarytable13,  echo=FALSE}
+resulttable=readRDS("../../results/lg_fit_statistics_predisposing.rds")
+knitr::kable(resulttable, caption = "logistic regression statistics betweem infection status and Key Predisposing Factors")
+```
 
 
+Next, we want to see the logistic regression analysis statistics between the **outcome variable** (infection status info) and the three key **enabling factors** (socio economic status, area of residence,student/healthworker, source of covid news).
 
+```{r summarytable14,  echo=FALSE}
+resulttable=readRDS("../../results/lg_fit_table_enabling.rds")
+knitr::kable(resulttable, caption = "logistic regression  betweem infection status and Key Enabling Factors")
+```
 
-_To get some further insight into your data, if reasonable you could compute simple statistics (e.g. t-tests, simple regression model with 1 predictor, etc.) to look for associations between your outcome(s) and each individual predictor variable. Though note that unless you pre-specified the outcome and main exposure, any "p<0.05 means statistical significance" interpretation is not valid._
+```{r summarytable15,  echo=FALSE}
+resulttable=readRDS("../../results/lg_fit_statistics_enabling.rds")
+knitr::kable(resulttable, caption = "logistic regression statistics betweem infection status and Key enabling Factors")
+```
 
+Next, we want to see the logistic regression analysis statistics between the **outcome variable** (infection status info) and the level of fear of infection and quarantined or not **(Key need for care factors )** 
+
+```{r summarytable16,  echo=FALSE}
+resulttable=readRDS("../../results/lg_fit_table_needforcare.rds")
+knitr::kable(resulttable, caption = "logistic regression  betweem infection status and Key Need for care Factor")
+```
+
+```{r summarytable17,  echo=FALSE}
+resulttable=readRDS("../../results/lg_fit_statistics_needforcare.rds")
+knitr::kable(resulttable, caption = "logistic regression statistics betweem infection status and Key Need for Care Factors")
+```
 
 
 
@@ -165,7 +139,7 @@ _Include citations in your Rmd file using bibtex, the list of references will au
 
 This paper [@Leek2015a] discusses types of analyses. 
 
-Note that this cited reference will show up at the end of the document, the reference formatting is determined by the CSL file specified in the YAML header. Many more style files for almost any journal [are available](https://www.zotero.org/styles). You also specify the location of your bibtex reference file in the YAML. You can call your reference file anything you like, I just used the generic word `references.bib` but giving it a more descriptive name is probably better.
+
 
 
 # References

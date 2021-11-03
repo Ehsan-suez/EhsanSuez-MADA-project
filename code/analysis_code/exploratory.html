@@ -191,7 +191,7 @@ library(here)</code></pre>
 data1 &lt;- readRDS(data_location)</code></pre>
 <p>#check if certain column is factor or not</p>
 <pre class="r"><code>is.factor(data1$Sex)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>#I want to see how many NA values are there for each column. So, I wrote the following code. For manuscript we dont need it.</p>
 <pre class="r"><code>cbind(
       lapply(
@@ -333,19 +333,19 @@ saveRDS(df1, file = summarytable_file)</code></pre>
 print(sex_summary)</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   Sex    percent
-##   &lt;chr&gt;    &lt;dbl&gt;
-## 1 Female    45.2
-## 2 Male      54.8</code></pre>
+##   &lt;fct&gt;    &lt;dbl&gt;
+## 1 Male      54.8
+## 2 Female    45.2</code></pre>
 <pre class="r"><code>df2 = data.frame(sex_summary)
 summarytable_file = here(&quot;results&quot;, &quot;summarytable2.rds&quot;)
 saveRDS(df2, file = summarytable_file)</code></pre>
 <p>#number of people for each educational category</p>
 <pre class="r"><code>table(data1$`education`)</code></pre>
 <pre><code>## 
-##                                Primary                              Secondary 
-##                                      6                                    149 
 ##  University Postgraduate degree holder University Undergraduate degree holder 
-##                                    168                                    383</code></pre>
+##                                    168                                    383 
+##                              Secondary                                Primary 
+##                                    149                                      6</code></pre>
 <pre class="r"><code>sum(data1$&#39;education&#39; == &#39;Primary&#39;)</code></pre>
 <pre><code>## [1] 6</code></pre>
 <pre class="r"><code>sum(data1$&#39;education&#39; == &#39;Secondary&#39;)</code></pre>
@@ -361,28 +361,28 @@ saveRDS(df2, file = summarytable_file)</code></pre>
 print(education_summary)</code></pre>
 <pre><code>## # A tibble: 4 × 2
 ##   education                              percent
-##   &lt;chr&gt;                                    &lt;dbl&gt;
-## 1 Primary                                  0.850
-## 2 Secondary                               21.1  
-## 3 University Postgraduate degree holder   23.8  
-## 4 University Undergraduate degree holder  54.2</code></pre>
+##   &lt;fct&gt;                                    &lt;dbl&gt;
+## 1 University Postgraduate degree holder   23.8  
+## 2 University Undergraduate degree holder  54.2  
+## 3 Secondary                               21.1  
+## 4 Primary                                  0.850</code></pre>
 <pre class="r"><code>df3 = data.frame(education_summary)
 summarytable_file = here(&quot;results&quot;, &quot;summarytable3.rds&quot;)
 saveRDS(df3, file = summarytable_file)</code></pre>
 <p>#student/worker in the heathcare sector?</p>
 <pre class="r"><code>table(data1$`student/heathworker`)</code></pre>
 <pre><code>## 
-##  No Yes 
-## 480 226</code></pre>
+## Yes  No 
+## 226 480</code></pre>
 <p>#percentage of student/health worker</p>
 <pre class="r"><code>data1 %&gt;% 
      group_by( `student/heathworker` ) %&gt;% 
      summarise( percent = 100 * n() / nrow( data1) )</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   `student/heathworker` percent
-##   &lt;chr&gt;                   &lt;dbl&gt;
-## 1 No                       68.0
-## 2 Yes                      32.0</code></pre>
+##   &lt;fct&gt;                   &lt;dbl&gt;
+## 1 Yes                      32.0
+## 2 No                       68.0</code></pre>
 <p>#household members?</p>
 <pre class="r"><code>table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 60 years and above`)</code></pre>
 <pre><code>## 
@@ -402,10 +402,10 @@ saveRDS(df3, file = summarytable_file)</code></pre>
 ## 372 205  84  22   7   6   3   2   2   3</code></pre>
 <pre class="r"><code>table(data1$`economic_status`)</code></pre>
 <pre><code>## 
-##         High income category          Low income category 
-##                           45                           54 
-## Lower middle income category Upper middle income category 
-##                          259                          348</code></pre>
+##          Low income category Upper middle income category 
+##                           54                          348 
+## Lower middle income category         High income category 
+##                          259                           45</code></pre>
 <pre class="r"><code>sum(data1$&#39;economic_status&#39; == &#39;High income category&#39;)</code></pre>
 <pre><code>## [1] 45</code></pre>
 <pre class="r"><code>sum(data1$&#39;economic_status&#39; == &#39;Low income category&#39;)</code></pre>
@@ -421,20 +421,20 @@ saveRDS(df3, file = summarytable_file)</code></pre>
 print(income_summary)</code></pre>
 <pre><code>## # A tibble: 4 × 2
 ##   economic_status              percent
-##   &lt;chr&gt;                          &lt;dbl&gt;
-## 1 High income category            6.37
-## 2 Low income category             7.65
+##   &lt;fct&gt;                          &lt;dbl&gt;
+## 1 Low income category             7.65
+## 2 Upper middle income category   49.3 
 ## 3 Lower middle income category   36.7 
-## 4 Upper middle income category   49.3</code></pre>
+## 4 High income category            6.37</code></pre>
 <pre class="r"><code>df4 = data.frame(income_summary)
 summarytable_file = here(&quot;results&quot;, &quot;summarytable4.rds&quot;)
 saveRDS(df4, file = summarytable_file)</code></pre>
 <pre class="r"><code>table(data1$`residence`)</code></pre>
 <pre><code>## 
-##          A rural place / village A Sub-urban setting / urban slum 
-##                               64                              197 
-##   An urban setting / city / town 
-##                              445</code></pre>
+##   An urban setting / city / town A Sub-urban setting / urban slum 
+##                              445                              197 
+##          A rural place / village 
+##                               64</code></pre>
 <pre class="r"><code>sum(data1$&#39;residence&#39; == &#39;A rural place / village&#39;)</code></pre>
 <pre><code>## [1] 64</code></pre>
 <pre class="r"><code>sum(data1$&#39;residence&#39; == &#39;A Sub-urban setting / urban slum&#39;)</code></pre>
@@ -448,29 +448,29 @@ saveRDS(df4, file = summarytable_file)</code></pre>
 print(residence_summary)</code></pre>
 <pre><code>## # A tibble: 3 × 2
 ##   residence                        percent
-##   &lt;chr&gt;                              &lt;dbl&gt;
-## 1 A rural place / village             9.07
+##   &lt;fct&gt;                              &lt;dbl&gt;
+## 1 An urban setting / city / town     63.0 
 ## 2 A Sub-urban setting / urban slum   27.9 
-## 3 An urban setting / city / town     63.0</code></pre>
+## 3 A rural place / village             9.07</code></pre>
 <pre class="r"><code>df5 = data.frame(residence_summary)
 summarytable_file = here(&quot;results&quot;, &quot;summarytable5.rds&quot;)
 saveRDS(df5, file = summarytable_file)</code></pre>
 <pre class="r"><code>table(data1$`trusted_source`)</code></pre>
 <pre><code>## 
-##                                Family and friends 
-##                                                21 
-##                                  Health personnel 
-##                                               237 
-##                                 None of the above 
-##                                                32 
 ##                                             Other 
 ##                                                32 
+##                                  Health personnel 
+##                                               237 
+##   Social Media (WhatsApp, Facebook, Twitter, etc) 
+##                                               151 
 ##                                        Radio / TV 
 ##                                               217 
+##                                Family and friends 
+##                                                21 
+##                                 None of the above 
+##                                                32 
 ## Religious authorities (Pastor, Priest, Imam, etc) 
-##                                                16 
-##   Social Media (WhatsApp, Facebook, Twitter, etc) 
-##                                               151</code></pre>
+##                                                16</code></pre>
 <p>#most trusted source?</p>
 <pre class="r"><code>source_summary = data1 %&gt;% 
      group_by( `trusted_source` ) %&gt;% 
@@ -478,14 +478,14 @@ saveRDS(df5, file = summarytable_file)</code></pre>
 print(source_summary)</code></pre>
 <pre><code>## # A tibble: 7 × 2
 ##   trusted_source                                    percent
-##   &lt;chr&gt;                                               &lt;dbl&gt;
-## 1 Family and friends                                   2.97
+##   &lt;fct&gt;                                               &lt;dbl&gt;
+## 1 Other                                                4.53
 ## 2 Health personnel                                    33.6 
-## 3 None of the above                                    4.53
-## 4 Other                                                4.53
-## 5 Radio / TV                                          30.7 
-## 6 Religious authorities (Pastor, Priest, Imam, etc)    2.27
-## 7 Social Media (WhatsApp, Facebook, Twitter, etc)     21.4</code></pre>
+## 3 Social Media (WhatsApp, Facebook, Twitter, etc)     21.4 
+## 4 Radio / TV                                          30.7 
+## 5 Family and friends                                   2.97
+## 6 None of the above                                    4.53
+## 7 Religious authorities (Pastor, Priest, Imam, etc)    2.27</code></pre>
 <pre class="r"><code>df6 = data.frame(source_summary)
 summarytable_file = here(&quot;results&quot;, &quot;summarytable6.rds&quot;)
 saveRDS(df6, file = summarytable_file)</code></pre>
@@ -500,17 +500,17 @@ saveRDS(df6, file = summarytable_file)</code></pre>
 print(work_From_home_or_not_Summary)</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   work_from_home percent
-##   &lt;chr&gt;            &lt;dbl&gt;
-## 1 No                49.2
-## 2 Yes               50.8</code></pre>
+##   &lt;fct&gt;            &lt;dbl&gt;
+## 1 Yes               50.8
+## 2 No                49.2</code></pre>
 <pre class="r"><code>df7 = data.frame(work_From_home_or_not_Summary)
 summarytable_file = here(&quot;results&quot;, &quot;summarytable7.rds&quot;)
 saveRDS(df7, file = summarytable_file)</code></pre>
 <p>#Descriptive analysis for each question?</p>
 <pre class="r"><code>table(data1$`quarantined_or_not`)</code></pre>
 <pre><code>## 
-##  No Yes 
-## 299 407</code></pre>
+## Yes  No 
+## 407 299</code></pre>
 <p>#Quarantined or not</p>
 <pre class="r"><code>q_or_not_summary = data1 %&gt;% 
      group_by( `quarantined_or_not` ) %&gt;% 
@@ -518,9 +518,9 @@ saveRDS(df7, file = summarytable_file)</code></pre>
 print(q_or_not_summary)</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   quarantined_or_not percent
-##   &lt;chr&gt;                &lt;dbl&gt;
-## 1 No                    42.4
-## 2 Yes                   57.6</code></pre>
+##   &lt;fct&gt;                &lt;dbl&gt;
+## 1 Yes                   57.6
+## 2 No                    42.4</code></pre>
 <pre class="r"><code>df8 = data.frame(q_or_not_summary)
 summarytable_file = here(&quot;results&quot;, &quot;summarytable8.rds&quot;)
 saveRDS(df8, file = summarytable_file)</code></pre>
@@ -539,7 +539,7 @@ saveRDS(df8, file = summarytable_file)</code></pre>
 print(test_status_summary)</code></pre>
 <pre><code>## # A tibble: 3 × 2
 ##   infection_status_info                           percent
-##   &lt;chr&gt;                                             &lt;dbl&gt;
+##   &lt;fct&gt;                                             &lt;dbl&gt;
 ## 1 I was not tested / I don&#39;t know my test results   63.0 
 ## 2 I was tested negative                             27.9 
 ## 3 I was tested positive                              9.07</code></pre>
@@ -553,21 +553,21 @@ saveRDS(df9, file = summarytable_file)</code></pre>
 print(worry_level_summary)</code></pre>
 <pre><code>## # A tibble: 5 × 2
 ##   worry_level          percent
-##   &lt;chr&gt;                  &lt;dbl&gt;
-## 1 1=Not at all worried   17.7 
+##   &lt;fct&gt;                  &lt;dbl&gt;
+## 1 3=Moderately worried   32.6 
 ## 2 2=A little worried     36.3 
-## 3 3=Moderately worried   32.6 
-## 4 4=Very worried         10.9 
-## 5 5=Extremely worried     2.55</code></pre>
+## 3 4=Very worried         10.9 
+## 4 5=Extremely worried     2.55
+## 5 1=Not at all worried   17.7</code></pre>
 <pre class="r"><code>df10 = data.frame(worry_level_summary)
 summarytable_file = here(&quot;results&quot;, &quot;summarytable10.rds&quot;)
 saveRDS(df10, file = summarytable_file)</code></pre>
 <pre class="r"><code>table(data1$`worry_level`)</code></pre>
 <pre><code>## 
-## 1=Not at all worried   2=A little worried 3=Moderately worried 
-##                  125                  256                  230 
-##       4=Very worried  5=Extremely worried 
-##                   77                   18</code></pre>
+## 3=Moderately worried   2=A little worried       4=Very worried 
+##                  230                  256                   77 
+##  5=Extremely worried 1=Not at all worried 
+##                   18                  125</code></pre>
 <pre class="r"><code>table(data1$`Do you have any of the following chronic/underlying diseases? (many answers possible): Heart disease`)</code></pre>
 <pre><code>## 
 ## No I Don&#39;t have this Disease   X- Yes I have this Disease 
@@ -608,7 +608,7 @@ saveRDS(df10, file = summarytable_file)</code></pre>
 print(chronic_disease_history)</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   `Do you have any of the following chronic/underlying diseases? (many … percent
-##   &lt;chr&gt;                                                                    &lt;dbl&gt;
+##   &lt;fct&gt;                                                                    &lt;dbl&gt;
 ## 1 I dont have #any_of_the_previously_mentioned Disease                      78.5
 ## 2 X-  I have #at_least_one_previously_mentioned Disease                     21.5</code></pre>
 <pre class="r"><code>df11 = data.frame(chronic_disease_history)
@@ -620,132 +620,132 @@ saveRDS(df11, file = summarytable_file)</code></pre>
 ##                               458                               248</code></pre>
 <pre class="r"><code>table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Wearing face mask`)</code></pre>
 <pre><code>## 
-## No, I don&#39;t followed this measure    X- Yes I followed this measure 
-##                                65                               641</code></pre>
+##    X- Yes I followed this measure No, I don&#39;t followed this measure 
+##                               641                                65</code></pre>
 <pre class="r"><code>table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Hand hygiene (regular handwashing with soap or using hand gel)`)</code></pre>
 <pre><code>## 
-## No, I don&#39;t followed this measure    X- Yes I followed this measure 
-##                               100                               606</code></pre>
+##    X- Yes I followed this measure No, I don&#39;t followed this measure 
+##                               606                               100</code></pre>
 <pre class="r"><code>table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Coughing hygiene (covering mouth when coughing or sneezing)`)</code></pre>
 <pre><code>## 
-## No, I don&#39;t followed this measure    X- Yes I followed this measure 
-##                               163                               543</code></pre>
+##    X- Yes I followed this measure No, I don&#39;t followed this measure 
+##                               543                               163</code></pre>
 <pre class="r"><code>table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above`)</code></pre>
 <pre><code>## 
-## No, I don&#39;t followed #any_of_the_previously_mentioned measures 
-##                                                             17 
 ##    X-Yes, I followed #any_of_the_previously_mentioned measures 
-##                                                            689</code></pre>
+##                                                            689 
+## No, I don&#39;t followed #any_of_the_previously_mentioned measures 
+##                                                             17</code></pre>
 <pre class="r"><code>data1 %&gt;% 
      group_by( `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above` ) %&gt;% 
      summarise( percent = 100 * n() / nrow( data1) )</code></pre>
 <pre><code>## # A tibble: 2 × 2
 ##   `During the past 7 days, have you been observing any of the following… percent
-##   &lt;chr&gt;                                                                    &lt;dbl&gt;
-## 1 No, I don&#39;t followed #any_of_the_previously_mentioned measures            2.41
-## 2 X-Yes, I followed #any_of_the_previously_mentioned measures              97.6</code></pre>
+##   &lt;fct&gt;                                                                    &lt;dbl&gt;
+## 1 X-Yes, I followed #any_of_the_previously_mentioned measures              97.6 
+## 2 No, I don&#39;t followed #any_of_the_previously_mentioned measures            2.41</code></pre>
 <pre class="r"><code>table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Feeling down, depressed, or hopeless (low spirits)`)</code></pre>
 <pre><code>## 
-## More than half the days        Nearly every day              Not at all 
-##                      67                      95                     183 
-##            Several days 
-##                     361</code></pre>
+##            Several days        Nearly every day              Not at all 
+##                     361                      95                     183 
+## More than half the days 
+##                      67</code></pre>
 <pre class="r"><code>table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Little interest or pleasure in doing things`)</code></pre>
 <pre><code>## 
-## More than half the days        Nearly every day              Not at all 
-##                      72                      73                     219 
-##            Several days 
-##                     342</code></pre>
+##              Not at all            Several days        Nearly every day 
+##                     219                     342                      73 
+## More than half the days 
+##                      72</code></pre>
 <pre class="r"><code>table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Not being able to stop or control worrying`)</code></pre>
 <pre><code>## 
-## More than half the days        Nearly every day              Not at all 
-##                      46                      70                     369 
-##            Several days 
-##                     221</code></pre>
+##              Not at all            Several days        Nearly every day 
+##                     369                     221                      70 
+## More than half the days 
+##                      46</code></pre>
 <pre class="r"><code>table(data1$`During the past two weeks, how often have you been bothered by each of the following symptoms?: Feeling nervous, anxious or on edge`)</code></pre>
 <pre><code>## 
-## More than half the days        Nearly every day              Not at all 
-##                      38                      48                     473 
-##            Several days 
-##                     147</code></pre>
+##            Several days              Not at all        Nearly every day 
+##                     147                     473                      48 
+## More than half the days 
+##                      38</code></pre>
 <pre class="r"><code>table(data1$`In your opinion, can someone be re-infected with coronavirus after recovering from a previous COVID-19 infection?`)</code></pre>
 <pre><code>## 
-## I don&#39;t know           No          Yes 
-##          115           54          537</code></pre>
+##          Yes I don&#39;t know           No 
+##          537          115           54</code></pre>
 <pre class="r"><code>table(data1$`In your opinion, can COVID-19 infection be prevented by a vaccine?`)</code></pre>
 <pre><code>## 
-## I don&#39;t know           No          Yes 
-##          173          121          412</code></pre>
+##          Yes           No I don&#39;t know 
+##          412          121          173</code></pre>
 <pre class="r"><code>table(data1$`To the best of your knowledge, is there currently an effective vaccine against COVID-19?`)</code></pre>
 <pre><code>## 
-## I don&#39;t know           No          Yes 
-##          192          120          394</code></pre>
+##          Yes           No I don&#39;t know 
+##          394          120          192</code></pre>
 <pre class="r"><code>table(data1$`Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 50% effective`)</code></pre>
 <pre><code>## 
-##         No No opinion        Yes 
-##        357        147        202</code></pre>
+##        Yes         No No opinion 
+##        202        357        147</code></pre>
 <pre class="r"><code>table(data1$`Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 75% effective`)</code></pre>
 <pre><code>## 
-##         No No opinion        Yes 
-##        310        142        254</code></pre>
+##        Yes         No No opinion 
+##        254        310        142</code></pre>
 <pre class="r"><code>table(data1$`Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 90% effective`)</code></pre>
 <pre><code>## 
-##         No No opinion        Yes 
-##        220        137        349</code></pre>
+##        Yes No opinion         No 
+##        349        137        220</code></pre>
 <pre class="r"><code>table(data1$`Would you be willing to allow your children take the COVID-19 vaccine when it becomes available?: If it is at least 95% effective`)</code></pre>
 <pre><code>## 
-##                          No No opinion / not applicable 
-##                          69                         107 
-##                         Yes 
-##                         527</code></pre>
+##                         Yes No opinion / not applicable 
+##                         527                         107 
+##                          No 
+##                          69</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible):  I don&#39;t think COVID-19 existsists`)</code></pre>
 <pre><code>## 
-##                I think that  #The_COVID-19_don&#39;t_exists 
-##                                                      19 
 ## Its not a reason to me that  #The_COVID-19_don&#39;t_exists 
-##                                                     687</code></pre>
+##                                                     687 
+##                I think that  #The_COVID-19_don&#39;t_exists 
+##                                                      19</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I think the vaccine is not effective`)</code></pre>
 <pre><code>## 
-##                     I think  #the_vaccine_is_not_effective 
-##                                                        132 
 ## Its not a reason to me that  #the_vaccine_is_not_effective 
-##                                                        574</code></pre>
+##                                                        574 
+##                     I think  #the_vaccine_is_not_effective 
+##                                                        132</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I think the vaccine is designed to harm us`)</code></pre>
 <pre><code>## 
-##                     I think  #the_vaccine_is designed to harm us 
-##                                                               33 
 ## Its not a reason to me that  #the_vaccine_is designed to harm us 
-##                                                              673</code></pre>
+##                                                              673 
+##                     I think  #the_vaccine_is designed to harm us 
+##                                                               33</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I am scared of side-effects of the vaccine`)</code></pre>
 <pre><code>## 
-##                     I think  #I_am_scared_of_side-effects-of the vaccine 
-##                                                                      304 
 ## Its not a reason to me that  #I_am_scared_of_side-effects-of the vaccine 
-##                                                                      402</code></pre>
+##                                                                      402 
+##                     I think  #I_am_scared_of_side-effects-of the vaccine 
+##                                                                      304</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): My body is naturally strong, I don&#39;t need a vaccine to fight COVID-19`)</code></pre>
 <pre><code>## 
-##                     I think  #My_body_is_naturally_strong, I don&#39;t need a vaccine to fight COVID-19 
-##                                                                                                  87 
 ## Its not a reason to me that  #My_body_is_naturally_strong, I don&#39;t need a vaccine to fight COVID-19 
-##                                                                                                 619</code></pre>
+##                                                                                                 619 
+##                     I think  #My_body_is_naturally_strong, I don&#39;t need a vaccine to fight COVID-19 
+##                                                                                                  87</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I already had COVID-19, so I think I am immune to the disease`)</code></pre>
 <pre><code>## 
-##                    I think  #I_already_had_COVID-19, so I think I am immune to the disease 
-##                                                                                         46 
 ## Its not a reason to me that #I_already_had_COVID-19, so I think I am immune to the disease 
-##                                                                                        660</code></pre>
+##                                                                                        660 
+##                    I think  #I_already_had_COVID-19, so I think I am immune to the disease 
+##                                                                                         46</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): The COVID-19 pandemic is finished in my country, no need for a vaccine now`)</code></pre>
 <pre><code>## 
-##                     I think #The_COVID-19_pandemic_is_finished in my country, no need for a vaccine now 
-##                                                                                                      33 
 ## Its not a reason to me that #The_COVID-19_pandemic_is_finished in my country, no need for a vaccine now 
-##                                                                                                     673</code></pre>
+##                                                                                                     673 
+##                     I think #The_COVID-19_pandemic_is_finished in my country, no need for a vaccine now 
+##                                                                                                      33</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): None of the above`)</code></pre>
 <pre><code>## 
-##          I marked at least one previously mentioned reason 
-##                                                        398 
 ## I think #no_previously_mentioned_reason is suitable for me 
-##                                                        308</code></pre>
+##                                                        308 
+##          I marked at least one previously mentioned reason 
+##                                                        398</code></pre>
 <pre class="r"><code>table(data1$`What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): Other reasons (please specify)`)</code></pre>
 <pre><code>## 
 ## I have #no_othe_reason for hesitation to take vaccine 
@@ -754,36 +754,36 @@ saveRDS(df11, file = summarytable_file)</code></pre>
 ##                                                     9</code></pre>
 <pre class="r"><code>table(data1$`Please specify other reasons for hesitating to receive the COVID-19 vaccine:`)</code></pre>
 <pre><code>## 
-##                                                                                                                                                                                                                                       I am a lactating mother 
-##                                                                                                                                                                                                                                                             1 
-## I have alergy in blood, also i have diabetics, so i am afraid of the side effect that i might get seriously ill or somethin. Also my son has asthma problem, i have heard the patients having diabetic, asthma, blood alergy are vulnerable to serious side e 
+##                                                                                                                                                                                                                     ভ্যাকসিনের গবেষণা এখনো অসম্পূর্ণ বলে মনে করি। 
 ##                                                                                                                                                                                                                                                             1 
 ##                                                                                                                                                                                 I&#39;m not allowed to get vaccinated since my body reacts negatively to vaccine. 
 ##                                                                                                                                                                                                                                                             1 
-##                                                                                                                                                                                                                vaccine নিয়ে কেউ সুস্থ হয়েছে এ নিউজ বিলিভ করি না 
+##                                                                                                                                                                                                                                           ভেজাল ভ্যাক্সিনের ভয়, 
 ##                                                                                                                                                                                                                                                             1 
 ##                                                                                                                                                                                                                                                      উদাসীনতা 
 ##                                                                                                                                                                                                                                                             1 
 ##                                                                                                                                                                              কোনোরকম দ্বিধা ছাড়াই আমি কোভিশিল্ড ভ্যাকসিনের প্রথম ডোজ নিয়েছি গত ২০.০২.২০২১ তারিখে। 
 ##                                                                                                                                                                                                                                                             1 
+## I have alergy in blood, also i have diabetics, so i am afraid of the side effect that i might get seriously ill or somethin. Also my son has asthma problem, i have heard the patients having diabetic, asthma, blood alergy are vulnerable to serious side e 
+##                                                                                                                                                                                                                                                             1 
+##                                                                                                                                                                                                                vaccine নিয়ে কেউ সুস্থ হয়েছে এ নিউজ বিলিভ করি না 
+##                                                                                                                                                                                                                                                             1 
 ##                                                                                                                                                                                                                                              তাওয়াক্কালতু আল্লাহ 
 ##                                                                                                                                                                                                                                                             1 
-##                                                                                                                                                                                                                                           ভেজাল ভ্যাক্সিনের ভয়, 
-##                                                                                                                                                                                                                                                             1 
-##                                                                                                                                                                                                                     ভ্যাকসিনের গবেষণা এখনো অসম্পূর্ণ বলে মনে করি। 
+##                                                                                                                                                                                                                                       I am a lactating mother 
 ##                                                                                                                                                                                                                                                             1</code></pre>
 <pre class="r"><code>table(data1$`How important is it to you that by getting the COVID-19 vaccine, you would protect your own health?: On a scale of 1 to 5`)</code></pre>
 <pre><code>## 
-## 1=Not at all important   2=A little important 3=Moderately important 
-##                     33                     41                    131 
-##       4=Very important  5=Extremely important 
-##                    196                    305</code></pre>
+##  5=Extremely important       4=Very important 3=Moderately important 
+##                    305                    196                    131 
+## 1=Not at all important   2=A little important 
+##                     33                     41</code></pre>
 <pre class="r"><code>table(data1$`How important is it to you that by getting the COVID-19 vaccine, you would protect the health of other people in your community?: On a scale of 1 to 5`)</code></pre>
 <pre><code>## 
-## 1=Not at all important   2=A little important 3=Moderately important 
-##                     26                     36                    129 
-##       4=Very important  5=Extremely important 
-##                    269                    246</code></pre>
+##  5=Extremely important       4=Very important 3=Moderately important 
+##                    246                    269                    129 
+## 1=Not at all important   2=A little important 
+##                     26                     36</code></pre>
 <pre class="r"><code>table(data1$`I fully understand what this study is about, and I freely consent to participate. All the information I provide can be used by researchers to better understand coronavirus disease in my country.`)</code></pre>
 <pre><code>## 
 ## Yes 

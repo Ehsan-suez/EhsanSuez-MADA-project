@@ -15,16 +15,134 @@ library(here)
 ```
 
 ```{r}
-data_location <- here::here("data","processed_data","processeddata2.rds")
+data_location <- here::here("data","processed_data","processeddata.rds")
 ```
 
 #load data. 
 ```{r}
 mydata <- readRDS(data_location)
-mydata
+glimpse(mydata)
 ```
 
-# this is the linear model with ordinary least square method
+#The main "outcome variable" is the knowledge of infection status (positive/negative/not tested). There are "predisposing factors" (age, sex, education level, chronic disease history etc), "enabling factors" (socio-economic status, area of residence, source of covid news etc) and "need for care factors" (level of fear of reinfection, quarantined or not). We'll do logistic regression analysis for key factors of epredisposing, enabling and need for care factors.
+
+
+#We'll start with logistic regression model betweem infection status and Age, Sex, Education level (Key Predisposing Factors)
 ```{r}
-is.factor(mydata$infection_status_info)
+lg_mod <- 
+       logistic_reg() %>% 
+       set_engine("glm")
+lg_fit <-
+       lg_mod %>%
+       fit(infection_status_info ~ Age + Sex + education, data = mydata)
+lg_fit
+```
+
+```{r}
+tidy(lg_fit)
+```
+
+```{r}
+lg_fit_table_predisposing <- tidy(lg_fit)
+```
+
+# saved it as a file
+```{r}
+summarytable_file12 = here("results", "lg_fit_table_predisposing.rds")
+saveRDS(lg_fit_table_predisposing, file = summarytable_file12)
+```
+
+```{r}
+glance(lg_fit)
+```
+
+```{r}
+lg_fit_statistics_predisposing <- glance(lg_fit)
+```
+
+# saved it as a file
+```{r}
+summarytable_file13 = here("results", "lg_fit_statistics_predisposing.rds")
+saveRDS(lg_fit_statistics_predisposing, file = summarytable_file13)
+```
+
+#Then, we'll do log model betweem infection status and socio economic status, area of residence,student/healthworker, source of covid news (Key enabling Factors)
+```{r}
+lg_fit1 <-
+       lg_mod %>%
+       fit(infection_status_info ~ economic_status + residence + trusted_source , data = mydata)
+lg_fit1
+```
+
+```{r}
+tidy(lg_fit1)
+```
+
+```{r}
+lg_fit_table_enabling <- tidy(lg_fit1)
+```
+
+# saved it as a file
+```{r}
+summarytable_file14 = here("results", "lg_fit_table_enabling.rds")
+saveRDS(lg_fit_table_enabling, file = summarytable_file14)
+```
+
+```{r}
+glance(lg_fit1)
+```
+
+```{r}
+lg_fit_statistics_enabling <- glance(lg_fit1)
+```
+
+# saved it as a file
+```{r}
+summarytable_file15 = here("results", "lg_fit_statistics_enabling.rds")
+saveRDS(lg_fit_statistics_enabling, file = summarytable_file15)
+```
+
+
+
+
+#Then, we'll do log model betweem infection status and level of fear of infection and quarantined or not (Key need for care factors )
+```{r}
+lg_fit2 <-
+       lg_mod %>%
+       fit(infection_status_info ~ quarantined_or_not + worry_level , data = mydata)
+lg_fit2
+```
+
+```{r}
+tidy(lg_fit2)
+```
+
+```{r}
+lg_fit_table_needforcare <- tidy(lg_fit2)
+```
+
+# saved it as a file
+```{r}
+summarytable_file16 = here("results", "lg_fit_table_needforcare.rds")
+saveRDS(lg_fit_table_needforcare, file = summarytable_file16)
+```
+
+```{r}
+glance(lg_fit2)
+```
+
+```{r}
+lg_fit_statistics_needforcare <- glance(lg_fit2)
+```
+
+# saved it as a file
+```{r}
+summarytable_file17 = here("results", "lg_fit_statistics_needforcare.rds")
+saveRDS(lg_fit_statistics_needforcare, file = summarytable_file17)
+```
+
+#compare three models
+```{r}
+compare_log_model <- anova(lg_fit$fit, lg_fit1$fit, lg_fit2$fit)
+compare_log_model
 ```

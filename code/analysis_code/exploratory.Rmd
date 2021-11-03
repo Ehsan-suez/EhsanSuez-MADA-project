@@ -19,10 +19,27 @@ data_location <- here::here("data","processed_data","processeddata.rds")
 data1 <- readRDS(data_location)
 ```
 
+#MAin outcome variable
+```{r}
+summary(data1$infection_status_info)
+```
+
+
 #check if certain column is factor or not
 ```{r}
-is.factor(data1$Sex)
+is.factor(data1$infection_status_info)
 ```
+
+#plotting infection_status_info count
+```{r}
+plot1 <- ggplot(data = data1) +
+    geom_bar(mapping = aes(x = infection_status_info))
+plot1
+figure_file = here("results","infection_status_info_distribution.png")
+ggsave(filename = figure_file, plot=plot1) 
+```
+
+
 
 #I want to see how many NA values are there for each column. So, I wrote the following code. For manuscript we dont need it.
 ```{r}

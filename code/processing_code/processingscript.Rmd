@@ -32,7 +32,7 @@ rawdata <- readxl::read_excel(data_location)
 
 
 ```{r}
-processeddata <- rawdata %>% rename ("education" = `Highest educational level`,
+processeddata1 <- rawdata %>% rename ("education" = `Highest educational level`,
                                "student/heathworker" = `Are you a student or worker in the healthcare sector?`,
                                "economic_status" = 'Which of the following categories best describes your current socio-economic situation?',
                                "residence" = `Do you live in:`,
@@ -43,7 +43,18 @@ processeddata <- rawdata %>% rename ("education" = `Highest educational level`,
                                "worry_level" = `How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5`,)
 ```
 
+```{r}
+processeddata<- processeddata1 %>% mutate(across(where(is_character),as_factor))
+```
 
+
+```{r}
+View(processeddata)
+```
+
+```{r}
+str(processeddata)
+```
 
 # location to save file
 ```{r}
@@ -54,22 +65,7 @@ save_data_location <- here::here("data","processed_data","processeddata.rds")
 saveRDS(processeddata, file = save_data_location)
 ```
 
-```{r}
-processeddata2 <- processeddata %>%
-                  mutate (infection_status_info = factor(infection_status_info)) 
-```
-                             
+                         
 
 
 
-```{r}
-str(processeddata2)
-```
-
-```{r}
-save_data_location <- here::here("data","processed_data","processeddata2.rds")
-```
-
-```{r}
-saveRDS(processeddata, file = save_data_location)
-```

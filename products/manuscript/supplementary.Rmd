@@ -1,0 +1,66 @@
+---
+title: "supplementary"
+author: "Ehsan"
+date: "11/3/2021"
+output: html_document
+---
+
+```{r summarytable,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable.rds")
+knitr::kable(resulttable, caption = 'Age Percentage of Participants.')
+```
+**78.9% of total participants are less than or equal  to 35 years old.** 
+
+```{r summarytable2,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable2.rds")
+knitr::kable(resulttable, caption = 'Sex Percentage of Participants.')
+```
+**While 45.18% of the participants were female, 54.82% were male.**
+
+```{r summarytable3,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable3.rds")
+knitr::kable(resulttable, caption = 'Education Background Percentage of Participants.')
+```
+**78.05% of the participants had a bachelor or post-bachelor degree**
+```{r summarytable4,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable4.rds")
+knitr::kable(resulttable, caption = 'Income Percentage of Participants.')
+```
+**Almost 50% of the participants belongs to "upper middle income category"**
+```{r summarytable5,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable5.rds")
+knitr::kable(resulttable, caption = 'Residence Percentage of Participants.')
+```
+**Less than 10% of the participants live in a village/rural area**
+```{r summarytable6,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable6.rds")
+knitr::kable(resulttable, caption = 'Source of information Percentage of Participants.')
+```
+**Health professionals and Tv/radio seems to be the most trusted source to the participants.**
+```{r summarytable7,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable7.rds")
+knitr::kable(resulttable, caption = 'Percentage of Participants working from home or not.')
+```
+**Apparently equal half of the participants worked from or not**
+```{r summarytable8,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable8.rds")
+knitr::kable(resulttable, caption = 'Percentage of Participants quarantined or not at some stage.')
+```
+**Major half of the participants did quarantine at some stage during the study**
+```{r summarytable9,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable9.rds")
+knitr::kable(resulttable, caption = 'Percentage of covid test status of the participants.')
+```
+**63% of the participants didn't go through a COVID test**
+```{r summarytable10,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable10.rds")
+knitr::kable(resulttable, caption = "Percentage of participants' worry level about (re)infection with COVID-19.")
+```
+**Almost half of the participants (46%) were moderate or more worried about reinfection**
+```{r summarytable11,  echo=FALSE}
+resulttable=readRDS("../../results/summarytable11.rds")
+knitr::kable(resulttable, caption = "Percentage of participants' history of chronic disease")
+```
+**Only 22% of the participants recorded to have some sort of chronic disease**
+
+

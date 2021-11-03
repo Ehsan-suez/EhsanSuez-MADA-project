@@ -227,6 +227,255 @@ pre code {
 <pre class="r"><code>library(broom.mixed)
 library(here)</code></pre>
 <pre><code>## here() starts at /Users/ehsansuez/Study /MADA_2021/EhsanSuez-MADA-project</code></pre>
+<pre class="r"><code>data_location &lt;- here::here(&quot;data&quot;,&quot;processed_data&quot;,&quot;processeddata.rds&quot;)</code></pre>
+<p>#load data.</p>
+<pre class="r"><code>mydata &lt;- readRDS(data_location)
+glimpse(mydata)</code></pre>
+<pre><code>## Rows: 706
+## Columns: 59
+## $ `Serial number`                                                                                                                                                                                            &lt;dbl&gt; …
+## $ Created                                                                                                                                                                                                    &lt;dttm&gt; …
+## $ Age                                                                                                                                                                                                        &lt;dbl&gt; …
+## $ Sex                                                                                                                                                                                                        &lt;fct&gt; …
+## $ `Country of residence:`                                                                                                                                                                                    &lt;fct&gt; …
+## $ education                                                                                                                                                                                                  &lt;fct&gt; …
+## $ `student/heathworker`                                                                                                                                                                                      &lt;fct&gt; …
+## $ `Who do you currently live with in the same household? Please select the number of persons in each age category.: 60 years and above`                                                                      &lt;dbl&gt; …
+## $ `Who do you currently live with in the same household? Please select the number of persons in each age category.: 18 to 59 years`                                                                          &lt;dbl&gt; …
+## $ `Who do you currently live with in the same household? Please select the number of persons in each age category.: 12 to 17 years`                                                                          &lt;dbl&gt; …
+## $ `Who do you currently live with in the same household? Please select the number of persons in each age category.: Less than 12 years`                                                                      &lt;dbl&gt; …
+## $ economic_status                                                                                                                                                                                            &lt;fct&gt; …
+## $ residence                                                                                                                                                                                                  &lt;fct&gt; …
+## $ trusted_source                                                                                                                                                                                             &lt;fct&gt; …
+## $ work_from_home                                                                                                                                                                                             &lt;fct&gt; …
+## $ quarantined_or_not                                                                                                                                                                                         &lt;fct&gt; …
+## $ infection_status_info                                                                                                                                                                                      &lt;fct&gt; …
+## $ worry_level                                                                                                                                                                                                &lt;fct&gt; …
+## $ `Do you have any of the following chronic/underlying diseases? (many answers possible): Heart disease`                                                                                                     &lt;fct&gt; …
+## $ `Do you have any of the following chronic/underlying diseases? (many answers possible): Hypertension`                                                                                                      &lt;fct&gt; …
+## $ `Do you have any of the following chronic/underlying diseases? (many answers possible): Diabetes`                                                                                                          &lt;fct&gt; …
+## $ `Do you have any of the following chronic/underlying diseases? (many answers possible): Cancer`                                                                                                            &lt;fct&gt; …
+## $ `Do you have any of the following chronic/underlying diseases? (many answers possible): HIV`                                                                                                               &lt;fct&gt; …
+## $ `Do you have any of the following chronic/underlying diseases? (many answers possible): Tuberculosis`                                                                                                      &lt;fct&gt; …
+## $ `Do you have any of the following chronic/underlying diseases? (many answers possible): Asthma`                                                                                                            &lt;fct&gt; …
+## $ `Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above`                                                                                                 &lt;fct&gt; …
+## $ `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Social distancing of at least 1.5m`                             &lt;fct&gt; …
+## $ `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Wearing face mask`                                              &lt;fct&gt; …
+## $ `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Hand hygiene (regular handwashing with soap or using hand gel)` &lt;fct&gt; …
+## $ `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Coughing hygiene (covering mouth when coughing or sneezing)`    &lt;fct&gt; …
+## $ `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above`                                              &lt;fct&gt; …
+## $ `During the past two weeks, how often have you been bothered by each of the following symptoms?: Feeling down, depressed, or hopeless (low spirits)`                                                       &lt;fct&gt; …
+## $ `During the past two weeks, how often have you been bothered by each of the following symptoms?: Little interest or pleasure in doing things`                                                              &lt;fct&gt; …
+## $ `During the past two weeks, how often have you been bothered by each of the following symptoms?: Not being able to stop or control worrying`                                                               &lt;fct&gt; …
+## $ `During the past two weeks, how often have you been bothered by each of the following symptoms?: Feeling nervous, anxious or on edge`                                                                      &lt;fct&gt; …
+## $ `In your opinion, can someone be re-infected with coronavirus after recovering from a previous COVID-19 infection?`                                                                                        &lt;fct&gt; …
+## $ `In your opinion, can COVID-19 infection be prevented by a vaccine?`                                                                                                                                       &lt;fct&gt; …
+## $ `To the best of your knowledge, is there currently an effective vaccine against COVID-19?`                                                                                                                 &lt;fct&gt; …
+## $ `Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 50% effective`                                                                                            &lt;fct&gt; …
+## $ `Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 75% effective`                                                                                            &lt;fct&gt; …
+## $ `Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 90% effective`                                                                                            &lt;fct&gt; …
+## $ `Would you be willing to take the COVID-19 vaccine when it becomes available?: If it is at least 95% effective`                                                                                            &lt;fct&gt; …
+## $ `Would you be willing to allow your children take the COVID-19 vaccine when it becomes available?: If it is at least 50% effective`                                                                        &lt;fct&gt; …
+## $ `Would you be willing to allow your children take the COVID-19 vaccine when it becomes available?: If it is at least 75% effective`                                                                        &lt;fct&gt; …
+## $ `Would you be willing to allow your children take the COVID-19 vaccine when it becomes available?: If it is at least 90% effective`                                                                        &lt;fct&gt; …
+## $ `Would you be willing to allow your children take the COVID-19 vaccine when it becomes available?: If it is at least 95% effective`                                                                        &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible):  I don&#39;t think COVID-19 existsists`                                                   &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I think the vaccine is not effective`                                                 &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I think the vaccine is designed to harm us`                                           &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I am scared of side-effects of the vaccine`                                           &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): My body is naturally strong, I don&#39;t need a vaccine to fight COVID-19`                &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): I already had COVID-19, so I think I am immune to the disease`                        &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): The COVID-19 pandemic is finished in my country, no need for a vaccine now`           &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): None of the above`                                                                    &lt;fct&gt; …
+## $ `What are some of the possible reasons why you would hesitate to take the COVID-19 vaccine? (many answers possible): Other reasons (please specify)`                                                       &lt;fct&gt; …
+## $ `Please specify other reasons for hesitating to receive the COVID-19 vaccine:`                                                                                                                             &lt;fct&gt; …
+## $ `How important is it to you that by getting the COVID-19 vaccine, you would protect your own health?: On a scale of 1 to 5`                                                                                &lt;fct&gt; …
+## $ `How important is it to you that by getting the COVID-19 vaccine, you would protect the health of other people in your community?: On a scale of 1 to 5`                                                   &lt;fct&gt; …
+## $ `I fully understand what this study is about, and I freely consent to participate. All the information I provide can be used by researchers to better understand coronavirus disease in my country.`       &lt;fct&gt; …</code></pre>
+<p>#The main “outcome variable” is the knowledge of infection status (positive/negative/not tested). There are “predisposing factors” (age, sex, education level, chronic disease history etc), “enabling factors” (socio-economic status, area of residence, source of covid news etc) and “need for care factors” (level of fear of reinfection, quarantined or not). We’ll do logistic regression analysis for key factors of epredisposing, enabling and need for care factors.</p>
+<p>#We’ll start with logistic regression model betweem infection status and Age, Sex, Education level (Key Predisposing Factors)</p>
+<pre class="r"><code>lg_mod &lt;- 
+       logistic_reg() %&gt;% 
+       set_engine(&quot;glm&quot;)
+lg_fit &lt;-
+       lg_mod %&gt;%
+       fit(infection_status_info ~ Age + Sex + education, data = mydata)
+lg_fit</code></pre>
+<pre><code>## parsnip model object
+## 
+## Fit time:  10ms 
+## 
+## Call:  stats::glm(formula = infection_status_info ~ Age + Sex + education, 
+##     family = stats::binomial, data = data)
+## 
+## Coefficients:
+##                                     (Intercept)  
+##                                        -1.78325  
+##                                             Age  
+##                                         0.04583  
+##                                       SexFemale  
+##                                         0.40333  
+## educationUniversity Undergraduate degree holder  
+##                                        -0.41113  
+##                              educationSecondary  
+##                                        -0.69005  
+##                                educationPrimary  
+##                                        -0.43713  
+## 
+## Degrees of Freedom: 705 Total (i.e. Null);  700 Residual
+## Null Deviance:       930.2 
+## Residual Deviance: 873.4     AIC: 885.4</code></pre>
+<pre class="r"><code>tidy(lg_fit)</code></pre>
+<pre><code>## # A tibble: 6 × 5
+##   term                                   estimate std.error statistic    p.value
+##   &lt;chr&gt;                                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 (Intercept)                             -1.78     0.333      -5.35     8.67e-8
+## 2 Age                                      0.0458   0.00808     5.68     1.39e-8
+## 3 SexFemale                                0.403    0.164       2.47     1.37e-2
+## 4 educationUniversity Undergraduate deg…  -0.411    0.197      -2.09     3.69e-2
+## 5 educationSecondary                      -0.690    0.246      -2.81     4.95e-3
+## 6 educationPrimary                        -0.437    0.950      -0.460    6.45e-1</code></pre>
+<pre class="r"><code>lg_fit_table_predisposing &lt;- tidy(lg_fit)</code></pre>
+<div id="saved-it-as-a-file" class="section level1">
+<h1>saved it as a file</h1>
+<pre class="r"><code>summarytable_file12 = here(&quot;results&quot;, &quot;lg_fit_table_predisposing.rds&quot;)
+saveRDS(lg_fit_table_predisposing, file = summarytable_file12)</code></pre>
+<pre class="r"><code>glance(lg_fit)</code></pre>
+<pre><code>## # A tibble: 1 × 8
+##   null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs
+##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+## 1          930.     705  -437.  885.  913.     873.         700   706</code></pre>
+<pre class="r"><code>lg_fit_statistics_predisposing &lt;- glance(lg_fit)</code></pre>
+</div>
+<div id="saved-it-as-a-file-1" class="section level1">
+<h1>saved it as a file</h1>
+<pre class="r"><code>summarytable_file13 = here(&quot;results&quot;, &quot;lg_fit_statistics_predisposing.rds&quot;)
+saveRDS(lg_fit_statistics_predisposing, file = summarytable_file13)</code></pre>
+<p>#Then, we’ll do log model betweem infection status and socio economic status, area of residence,student/healthworker, source of covid news (Key enabling Factors)</p>
+<pre class="r"><code>lg_fit1 &lt;-
+       lg_mod %&gt;%
+       fit(infection_status_info ~ economic_status + residence + trusted_source , data = mydata)
+lg_fit1</code></pre>
+<pre><code>## parsnip model object
+## 
+## Fit time:  5ms 
+## 
+## Call:  stats::glm(formula = infection_status_info ~ economic_status + 
+##     residence + trusted_source, family = stats::binomial, data = data)
+## 
+## Coefficients:
+##                                                     (Intercept)  
+##                                                         -1.3559  
+##                     economic_statusUpper middle income category  
+##                                                          1.4852  
+##                     economic_statusLower middle income category  
+##                                                          0.9113  
+##                             economic_statusHigh income category  
+##                                                          1.9065  
+##                       residenceA Sub-urban setting / urban slum  
+##                                                          0.1045  
+##                                residenceA rural place / village  
+##                                                         -0.8666  
+##                                  trusted_sourceHealth personnel  
+##                                                         -0.1196  
+##   trusted_sourceSocial Media (WhatsApp, Facebook, Twitter, etc)  
+##                                                         -0.5401  
+##                                        trusted_sourceRadio / TV  
+##                                                         -0.5963  
+##                                trusted_sourceFamily and friends  
+##                                                         -0.3366  
+##                                 trusted_sourceNone of the above  
+##                                                         -0.3203  
+## trusted_sourceReligious authorities (Pastor, Priest, Imam, etc)  
+##                                                         -0.5074  
+## 
+## Degrees of Freedom: 705 Total (i.e. Null);  694 Residual
+## Null Deviance:       930.2 
+## Residual Deviance: 881.2     AIC: 905.2</code></pre>
+<pre class="r"><code>tidy(lg_fit1)</code></pre>
+<pre><code>## # A tibble: 12 × 5
+##    term                                     estimate std.error statistic p.value
+##    &lt;chr&gt;                                       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+##  1 (Intercept)                                -1.36      0.535    -2.54  1.12e-2
+##  2 economic_statusUpper middle income cate…    1.49      0.429     3.46  5.32e-4
+##  3 economic_statusLower middle income cate…    0.911     0.435     2.09  3.62e-2
+##  4 economic_statusHigh income category         1.91      0.515     3.70  2.13e-4
+##  5 residenceA Sub-urban setting / urban sl…    0.104     0.183     0.571 5.68e-1
+##  6 residenceA rural place / village           -0.867     0.370    -2.35  1.90e-2
+##  7 trusted_sourceHealth personnel             -0.120     0.399    -0.300 7.64e-1
+##  8 trusted_sourceSocial Media (WhatsApp, F…   -0.540     0.417    -1.29  1.95e-1
+##  9 trusted_sourceRadio / TV                   -0.596     0.406    -1.47  1.42e-1
+## 10 trusted_sourceFamily and friends           -0.337     0.611    -0.551 5.82e-1
+## 11 trusted_sourceNone of the above            -0.320     0.529    -0.606 5.45e-1
+## 12 trusted_sourceReligious authorities (Pa…   -0.507     0.672    -0.755 4.50e-1</code></pre>
+<pre class="r"><code>lg_fit_table_enabling &lt;- tidy(lg_fit1)</code></pre>
+</div>
+<div id="saved-it-as-a-file-2" class="section level1">
+<h1>saved it as a file</h1>
+<pre class="r"><code>summarytable_file14 = here(&quot;results&quot;, &quot;lg_fit_table_enabling.rds&quot;)
+saveRDS(lg_fit_table_enabling, file = summarytable_file14)</code></pre>
+<pre class="r"><code>glance(lg_fit1)</code></pre>
+<pre><code>## # A tibble: 1 × 8
+##   null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs
+##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+## 1          930.     705  -441.  905.  960.     881.         694   706</code></pre>
+<pre class="r"><code>lg_fit_statistics_enabling &lt;- glance(lg_fit1)</code></pre>
+</div>
+<div id="saved-it-as-a-file-3" class="section level1">
+<h1>saved it as a file</h1>
+<pre class="r"><code>summarytable_file15 = here(&quot;results&quot;, &quot;lg_fit_statistics_enabling.rds&quot;)
+saveRDS(lg_fit_statistics_enabling, file = summarytable_file15)</code></pre>
+<p>#Then, we’ll do log model betweem infection status and level of fear of infection and quarantined or not (Key need for care factors )</p>
+<pre class="r"><code>lg_fit2 &lt;-
+       lg_mod %&gt;%
+       fit(infection_status_info ~ quarantined_or_not + worry_level , data = mydata)
+lg_fit2</code></pre>
+<pre><code>## parsnip model object
+## 
+## Fit time:  4ms 
+## 
+## Call:  stats::glm(formula = infection_status_info ~ quarantined_or_not + 
+##     worry_level, family = stats::binomial, data = data)
+## 
+## Coefficients:
+##                     (Intercept)             quarantined_or_notNo  
+##                        -0.01961                         -1.08147  
+##   worry_level2=A little worried        worry_level4=Very worried  
+##                        -0.17960                          0.62759  
+##  worry_level5=Extremely worried  worry_level1=Not at all worried  
+##                         0.68612                         -0.83686  
+## 
+## Degrees of Freedom: 705 Total (i.e. Null);  700 Residual
+## Null Deviance:       930.2 
+## Residual Deviance: 857.3     AIC: 869.3</code></pre>
+<pre class="r"><code>tidy(lg_fit2)</code></pre>
+<pre><code>## # A tibble: 6 × 5
+##   term                            estimate std.error statistic  p.value
+##   &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)                      -0.0196     0.148    -0.132 8.95e- 1
+## 2 quarantined_or_notNo             -1.08       0.175    -6.16  7.14e-10
+## 3 worry_level2=A little worried    -0.180      0.193    -0.932 3.51e- 1
+## 4 worry_level4=Very worried         0.628      0.275     2.29  2.23e- 2
+## 5 worry_level5=Extremely worried    0.686      0.510     1.35  1.79e- 1
+## 6 worry_level1=Not at all worried  -0.837      0.272    -3.08  2.08e- 3</code></pre>
+<pre class="r"><code>lg_fit_table_needforcare &lt;- tidy(lg_fit2)</code></pre>
+</div>
+<div id="saved-it-as-a-file-4" class="section level1">
+<h1>saved it as a file</h1>
+<pre class="r"><code>summarytable_file16 = here(&quot;results&quot;, &quot;lg_fit_table_needforcare.rds&quot;)
+saveRDS(lg_fit_table_needforcare, file = summarytable_file16)</code></pre>
+<pre class="r"><code>glance(lg_fit2)</code></pre>
+<pre><code>## # A tibble: 1 × 8
+##   null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs
+##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+## 1          930.     705  -429.  869.  897.     857.         700   706</code></pre>
+<pre class="r"><code>lg_fit_statistics_needforcare &lt;- glance(lg_fit2)</code></pre>
+</div>
+<div id="saved-it-as-a-file-5" class="section level1">
+<h1>saved it as a file</h1>
+<pre class="r"><code>summarytable_file17 = here(&quot;results&quot;, &quot;lg_fit_statistics_needforcare.rds&quot;)
+saveRDS(lg_fit_statistics_needforcare, file = summarytable_file17)</code></pre>
+</div>
 
 
 
