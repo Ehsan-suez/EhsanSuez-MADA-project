@@ -19,18 +19,18 @@ data_location <- here::here("data","processed_data","processeddata.rds")
 data1 <- readRDS(data_location)
 ```
 
-#MAin outcome variable
+#Summary for the main outcome variable
 ```{r}
 summary(data1$infection_status_info)
 ```
 
 
-#check if certain column is factor or not
+#check if this column is a factor or not
 ```{r}
 is.factor(data1$infection_status_info)
 ```
 
-#plotting infection_status_info count
+#plotting infection_status_info count and save the result
 ```{r}
 plot1 <- ggplot(data = data1) +
     geom_bar(mapping = aes(x = infection_status_info))
@@ -60,7 +60,7 @@ df <- as.data.frame(
    )
 rownames(subset(df, df$V1 != 0))
 ```
-#the mean age and SD of mean age:
+#Let's find the mean age and SD of mean age:
 ```{r}
 mean(data1$Age)
 sd(data1$Age)
@@ -72,7 +72,7 @@ sd(data1$Age)
      summarise( percent = 100 * n() / nrow( data1) )
 
 ```
-#people below 35
+#what's the percantage of people below 35 among the participants?
 ```{r}
 age_summary = data1 %>% 
      dplyr::filter(Age < 36 ) %>%
@@ -86,7 +86,7 @@ df1 = data.frame(age_summary)
 summarytable_file = here("results", "summarytable.rds")
 saveRDS(df1, file = summarytable_file)
 ```
-#percentage of male and female
+#percentage of male and female among the participants
 ```{r}
 sex_summary =data1 %>% 
      group_by( Sex ) %>% 
@@ -102,7 +102,7 @@ saveRDS(df2, file = summarytable_file)
 
 
 
-#number of people for each educational category
+#what is the number of people for each educational category among the participants?
 ```{r}
 table(data1$`education`)
 ```
@@ -112,7 +112,7 @@ sum(data1$'education' == 'Secondary')
 sum(data1$'education' == 'University Postgraduate degree holder')
 sum(data1$'education' == 'University Undergraduate degree holder')
 ```
-#percentage of people for each student category
+#what is the percentage of people for each eductaion category among the participants?
 ```{r}
 education_summary = data1 %>% 
      group_by( `education` ) %>% 
@@ -126,13 +126,13 @@ summarytable_file = here("results", "summarytable3.rds")
 saveRDS(df3, file = summarytable_file)
 ```
 
-#student/worker in the heathcare sector?
+#number of student/worker in the heathcare sector among the participants?
 ```{r}
-table(data1$`student/heathworker`)
+summary(data1$`student/heathworker`)
 ```
 
       
-#percentage of student/health worker
+#percentage of student/health worker among participants?
 
 ```{r}
 data1 %>% 
@@ -140,15 +140,18 @@ data1 %>%
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 
-#household members?
+#household members for each participants?
 ```{r}
 table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 60 years and above`)
 table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 18 to 59 years`)
 table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: 12 to 17 years`)
 table(data1$`Who do you currently live with in the same household? Please select the number of persons in each age category.: Less than 12 years`)
 ```
+
+
+#What is the number of participants for each type of economic status?
 ```{r}
-table(data1$`economic_status`)
+summary(data1$`economic_status`)
 ```
 ```{r}
 sum(data1$'economic_status' == 'High income category')
@@ -157,7 +160,7 @@ sum(data1$'economic_status' == 'Lower middle income category')
 sum(data1$'economic_status' == 'Upper middle income category ')
 ```
 
-#percentage of income category?
+#what is percentage of each income category?
 ```{r}
 income_summary = data1 %>% 
      group_by( `economic_status` ) %>% 
@@ -170,9 +173,11 @@ summarytable_file = here("results", "summarytable4.rds")
 saveRDS(df4, file = summarytable_file)
 ```
 
+#what is the number of participants living in different residence setup?
 ```{r}
-table(data1$`residence`)
+summary(data1$`residence`)
 ```
+
 ```{r}
 sum(data1$'residence' == 'A rural place / village')
 sum(data1$'residence' == 'A Sub-urban setting / urban slum')
@@ -191,10 +196,11 @@ summarytable_file = here("results", "summarytable5.rds")
 saveRDS(df5, file = summarytable_file)
 ```
 
+#what source the trust the most for COVID-related information?
 ```{r}
 table(data1$`trusted_source`)
 ```
-#most trusted source?
+#percentage of most trusted source?
 ```{r}
 source_summary = data1 %>% 
      group_by( `trusted_source` ) %>% 
@@ -212,7 +218,7 @@ sum(data1$'work_from_home' == 'No')
 sum(data1$'work_from_home' == 'Yes')
 ```
 
-#percentage of work from home or not?
+#percentage of participants work from home or not?
 ```{r}
 work_From_home_or_not_Summary = data1 %>% 
      group_by( `work_from_home` ) %>% 
@@ -227,11 +233,11 @@ saveRDS(df7, file = summarytable_file)
 
 
 
-#Descriptive analysis for each question?
+#number of participants who quarantined or not?
 ```{r}
 table(data1$`quarantined_or_not`)
 ```
-#Quarantined or not
+#Percentage of participants Quarantined or not
 ```{r}
 q_or_not_summary = data1 %>% 
      group_by( `quarantined_or_not` ) %>% 
@@ -244,10 +250,11 @@ summarytable_file = here("results", "summarytable8.rds")
 saveRDS(df8, file = summarytable_file)
 ```
 
+#number of people with their respective infection status?
 ```{r}
 table(data1$`infection_status_info`)
 ```
-#correct knowledge of their status
+#correct knowledge of their status with the percentage?
 ```{r}
 test_status_summary = data1 %>% 
      group_by( `infection_status_info` ) %>% 
@@ -313,7 +320,7 @@ summarytable_file = here("results", "summarytable11.rds")
 saveRDS(df11, file = summarytable_file)
 ```
 
-
+#the next code basically summarizes the answers for each question:
 ```{r}
 table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Social distancing of at least 1.5m`)
 ```
