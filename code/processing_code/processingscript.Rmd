@@ -33,14 +33,17 @@ rawdata <- readxl::read_excel(data_location)
 
 ```{r}
 processeddata1 <- rawdata %>% rename ("education" = `Highest educational level`,
-                               "student/heathworker" = `Are you a student or worker in the healthcare sector?`,
-                               "economic_status" = 'Which of the following categories best describes your current socio-economic situation?',
+                               "student_or_heathworker" = `Are you a student or worker in the healthcare sector?`,
+                               "economic_status" = `Which of the following categories best describes your current socio-economic situation?`,
                                "residence" = `Do you live in:`,
                                "trusted_source" = `Which source of COVID-19 information/advice do you trust the most?`,
-                               "work_from_home" = 'Are you currently working/studying from home because of the COVID-19 outbreak?',
+                               "work_from_home" = `Are you currently working/studying from home because of the COVID-19 outbreak?`,
                                "quarantined_or_not" = `Have you been quarantined (either at home or else where) at any point in time during the Covid-19 epidemic?`,
                                "infection_status_info" = `Since the beginning of the COVID-19 outbreak, do you have information on your infection status?`,
-                               "worry_level" = `How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5`,)
+                               "worry_level" = `How worried/fearful are you about becoming (re)infected by the coronavirus?: On a scale of 1 to 5`,
+                               "chronic_disease_history" = `Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above`,
+                              "social_distance_practice" = `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Social distancing of at least 1.5m`,
+                              "follow_preventive_measure" = `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above`)
 ```
 
 ```{r}

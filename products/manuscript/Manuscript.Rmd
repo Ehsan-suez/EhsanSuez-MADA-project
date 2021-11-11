@@ -74,13 +74,22 @@ library(here)
 ```
 ## Exploratory analysis
 
+```{r summarytable,  echo=FALSE}
+resulttable=readRDS("../../results/Overall.rds")
+knitr::kable(resulttable, caption = "**Overall Descriptive Statistics of the Participants**")
+```
+
+
+
+
+
 As the infection status information of the participants is the main outcome variable, let's see its distribution among the participants:
 
 ```{r resultfigure,  fig.cap='Infection Status Information.', echo=FALSE}
 knitr::include_graphics("../../results/infection_status_info_distribution.png")
 ```
 
-Among the participants, **78.9%** are less than or equal  to 35 years old. That indicates that majority of the participants tend to be younger. While **45.18%** of the participants were female, **54.82%** were male, which shows less chance of biad due to sex. **78.05%** of the participants had a bachelor or post-bachelor degree, clearly indicating that majority of the participants had pretty good education background. Almost **50%** of the participants belongs to "upper middle income category", indicating that at least half of the participants don't belong to the poorer side. Less than **10%** of the participants live in a village/rural area. Health professionals and Tv/radio seems to be the most trusted source to the participants. Apparently equal half of the participants worked from home or not at some stage of the study. Major half of the participants did quarantine at some stage during the study. **63%** of the participants didn't go through a COVID test. Almost half of the participants **(46%)** were moderate or more worried about reinfection. Only **22%** of the participants recorded to have some sort of chronic disease. **(This data can be accessed/viewd through the "supplementary.rmd" file)**
+Among the participants, **78.9%** are less than or equal  to 35 years old. That indicates that majority of the participants tend to be younger. While **45.18%** of the participants were female, **54.82%** were male, which shows less chance of biad due to sex. **78.05%** of the participants had a bachelor or post-bachelor degree, clearly indicating that majority of the participants had pretty good education background. Almost **50%** of the participants belongs to "upper middle income category", indicating that at least half of the participants don't belong to the poorer side. Less than **10%** of the participants live in a village/rural area. Health professionals and Tv/radio seems to be the most trusted source to the participants. Apparently equal half of the participants worked from home or not at some stage of the study. Major half of the participants did quarantine at some stage during the study. **63%** of the participants didn't go through a COVID test. Almost half of the participants **(46%)** were moderate or more worried about reinfection. Only **22%** of the participants recorded to have some sort of chronic disease. **(Separate analysis for each variable was done and the data can be accessed/viewd through the "supplementary.rmd" file)**
 
 
 Let's look at the logistic regression analysis and its statistics summary between the **outcome variable** (infection status info) and the three key **predisposing factors** (Age, Sex, Education level).
