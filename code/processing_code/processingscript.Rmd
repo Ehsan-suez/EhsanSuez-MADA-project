@@ -33,6 +33,7 @@ rawdata <- readxl::read_excel(data_location)
 
 ```{r}
 processeddata1 <- rawdata %>% rename ("education" = `Highest educational level`,
+                                      "serial" = `Serial number`,
                                "student_or_heathworker" = `Are you a student or worker in the healthcare sector?`,
                                "economic_status" = `Which of the following categories best describes your current socio-economic situation?`,
                                "residence" = `Do you live in:`,

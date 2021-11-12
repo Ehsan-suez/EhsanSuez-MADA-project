@@ -1,0 +1,82 @@
+---
+---
+title: "analysis"
+author: "Ehsan"
+date: "10/27/2021"
+output: html_document
+---
+
+```{r}
+library(tidymodels)
+library(readr)       # for importing data
+library(tidyverse)
+library(dotwhisker)
+library(broom)
+library(table1)
+library(here)
+library(nnet)
+library(patchwork)
+library(knitr)
+library(GGally)
+library(pacman)
+library(dplyr)
+```
+
+```{r}
+data_location <- here::here("data","processed_data","processeddata.rds")
+```
+
+#load data. 
+```{r}
+mydata <- readRDS(data_location)
+View(mydata)
+```
+
+
+
+#outcome split
+```{r}
+mydata$infection_status_info %>% table()
+```
+
+#make a recipe
+
+```{r}
+mydata_recipe <- 
+  recipe(infection_status_info ~ Age + Sex + education + economic_status + student_or_heathworker + residence + trusted_source + work_from_home + quarantined_or_not + infection_status_info + worry_level + chronic_disease_history + social_distance_practice + follow_preventive_measure, data = mydata)
+```
+  
+#make a model
+#choose multinom_reg() + nnet
+```{r}
+mydata_model <- 
+  multinom_reg() %>% 
+  set_engine("nnet")
+```
+
+#resampling method
+```{r}
+set.seed(200)
+mydata_folds <- vfold_cv(mydata, v = 10)
+```
+
+#make workflow
+```{r}
+mydata_wf <- 
+  workflow() %>% 
+  add_model(mydata_model) %>% 
+  add_recipe(mydata_recipe)
+```
+
+#fit
+```{r}
+mydata_fit <- 
+ mydata_wf %>% 
+  fit_resamples(mydata_folds)
+```
+
+#metrics
+```{r}
+collect_metrics(mydata_fit)
+```
+

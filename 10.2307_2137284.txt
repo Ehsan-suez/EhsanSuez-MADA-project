@@ -1,0 +1,14 @@
+@article{10.2307/2137284,
+ ISSN = {00221465},
+ URL = {http://www.jstor.org/stable/2137284},
+ abstract = {The Behavioral Model of Health Services Use was initially developed over 25 years ago. In the interim it has been subject to considerable application, reprobation, and alteration. I review its development and assess its continued relevance.},
+ author = {Ronald M. Andersen},
+ journal = {Journal of Health and Social Behavior},
+ number = {1},
+ pages = {1--10},
+ publisher = {[American Sociological Association, Sage Publications, Inc.]},
+ title = {Revisiting the Behavioral Model and Access to Medical Care: Does it Matter?},
+ volume = {36},
+ year = {1995}
+}
+

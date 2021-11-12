@@ -22,6 +22,12 @@ I'll write it later.,
 
 # Introduction 
 
+Testing can help people determine if they are infected with SARS-CoV-2 – regardless of whether they have symptoms – and whether they are at risk of spreading the infection to others. Testing of all people for SARS-CoV-2, including those who have no symptoms, who show symptoms of infection, and who may have been exposed to the virus can help prevent the spread of COVID-19 and identify people in need of care in a timely fashion. A positive test early in the course of the illness enables individuals to isolate themselves – reducing the chances of infecting others and allowing them to seek treatment earlier, likely reducing disease severity and the risk of long-term disability, or death.
+
+A negative test does not mean the person will not be able to acquire and transmit the infection in the future. Therefore, even if an individual is test negative, continuation of hygiene practices to self-protect and others by washing hands with soaps/ sanitizers frequently, physical distancing, and wearing a face mask is required. A positive test means isolation is mandatory, and that others with whom the individual may have been in contact since the time of exposure should also get tested. Since it is recognized that nearly half of all SARS-CoV-2 infections are transmitted by pre-symptomatic and asymptomatic people, identifying infected individuals while they are pre-symptomatic, as well as those who are asymptomatic, will play a major role in containing the pandemic.
+	
+Scanty research has been conducted to identify factors associated with the uptake of COVID-19 testing. In a cross-sectional community survey in Ontario, Canada, 3.3% tested positive for SARS-CoV-2. The odds of being tested increased with age, male sex, several underlying health conditions, previous use of health care services, and higher household income [@SundaramE]. Comparing the odds of COVID-19 positive diagnosis with test-negatives and untested individuals, older age, certain comorbidities, such as hypertension, diabetes and heart diseases, higher previous use of health care services were associated with increased odds of a positive SARS-CoV-2 test result [@SundaramE]. Using UK biobank data, being tested for COVID-19 was associated with male sex, Black ethnicity, lower socioeconomic status, occupation (being a health care worker, retired, unemployed), ever smoker, comorbidities, and exposure to particulate matter (PM) 2.5 absorbance [@Chadeau-hyam]. Among tested individuals, only male sex, non-White ethnicity, and lower education and none of the comorbidities or health risk factors were associated with a COVID-19 positive diagnosis [Chadeau-Hyam]. Workers in the healthcare sector are also at a higher risk of testing positive. A meta-analytic study showed that the pooled prevalence of healthcare workers testing positive for COVID-19 was between 7 to 11% [@Gomez-Ochoa]. 
+
 ## General Background Information
 This study aimed to investigate, using the Andersen’s model of health care utilization, factors associated with COVID-19 testing among adults in Bangladesh.
 
@@ -42,7 +48,7 @@ _**Study design, sample, and procedure**_
 This will be a descriptive cross-sectional online study conducted in Bangladesh between 10 December 2020 to 9 February 2021. Participant inclusion criteria were 18 years and older, any gender, and provision of electronic informed consent. 
 
 _**Measures**_
-Using Andersen’s model of health care utilization [Andersen 1995], study variables will be categorized into outcome variable, predisposing factors, enabling/disabling factors and need for care factors.
+Using Andersen’s model of health care utilization , study variables will be categorized into outcome variable, predisposing factors, enabling/disabling factors and need for care factors.
 
 _**Outcome variable**_
 COVID-19 testing/infection status will be assessed with the question, “Since the beginning of the COVID-19 outbreak, do you have information on your infection status?” Response options were 1=not tested/does not know test results, 2=negative, and 3=positive.
@@ -54,7 +60,7 @@ _**COVID-19 preventive measures**_
 Participants were asked, “During the past 7 days, have you been observing any of the following preventive measures against COVID-19? 1) Social distancing of at least 1.5m, 2) Wearing a face mask, 3) Hand hygiene (regular handwashing with soap or using hand gel), and 4) Coughing hygiene (covering the mouth when coughing or sneezing). A composite non-adherence to all four COVID-19 preventive measure was calculated by coding each negative response with “1”, summing scores ranging from 0-4 (Cronbach’s alpha 0.7).
 
 _**Enabling factors**_
-Enabling factors include self-perceived socio-economic status, self-perceived area of residence, being a student or worker in the health care sector, source of COVID-19 information/advice most trusted (coded as other, including family and friends, radio/TV, social media, religious authorities and health personnel.
+Enabling factors include self-perceived socio-economic status, self-perceived area of residence, being a student or worker in the health care sector, source of COVID-19 information/advice most trusted (coded as other, including family and friends, radio/TV, social media, religious authorities and health personnel[@Bono].
 
 _**Need for care factors**_ include two questions on 1) the level of fear/worry of being infected with COVID-19 (ranging from 1=not at all worried to 5=extremely worried), and 2) having been quarantined (either at home or elsewhere) at any point in time during the COVID-19 epidemic.
 
@@ -144,9 +150,9 @@ _Discuss what you perceive as strengths and limitations of your analysis._
 ## Conclusions
 _What are the main take-home messages?_
 
-_Include citations in your Rmd file using bibtex, the list of references will automatically be placed at the end_
 
-This paper [@Leek2015a] discusses types of analyses. 
+
+
 
 
 
