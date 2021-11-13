@@ -67,7 +67,7 @@ tidy(lg_fit)
 lg_fit_table_predisposing <- tidy(lg_fit)
 ```
 
-# saved it as a file
+#saved it as a file
 ```{r}
 summarytable_file12 = here("results", "lg_fit_table_predisposing.rds")
 saveRDS(lg_fit_table_predisposing, file = summarytable_file12)
@@ -81,7 +81,7 @@ glance(lg_fit)
 lg_fit_statistics_predisposing <- glance(lg_fit)
 ```
 
-# saved it as a file
+#saved it as a file
 ```{r}
 summarytable_file13 = here("results", "lg_fit_statistics_predisposing.rds")
 saveRDS(lg_fit_statistics_predisposing, file = summarytable_file13)
@@ -103,7 +103,7 @@ tidy(lg_fit1)
 lg_fit_table_enabling <- tidy(lg_fit1)
 ```
 
-# saved it as a file
+#saved it as a file
 ```{r}
 summarytable_file14 = here("results", "lg_fit_table_enabling.rds")
 saveRDS(lg_fit_table_enabling, file = summarytable_file14)
@@ -117,7 +117,7 @@ glance(lg_fit1)
 lg_fit_statistics_enabling <- glance(lg_fit1)
 ```
 
-# saved it as a file
+#saved it as a file
 ```{r}
 summarytable_file15 = here("results", "lg_fit_statistics_enabling.rds")
 saveRDS(lg_fit_statistics_enabling, file = summarytable_file15)
@@ -142,7 +142,7 @@ tidy(lg_fit2)
 lg_fit_table_needforcare <- tidy(lg_fit2)
 ```
 
-# saved it as a file
+#saved it as a file
 ```{r}
 summarytable_file16 = here("results", "lg_fit_table_needforcare.rds")
 saveRDS(lg_fit_table_needforcare, file = summarytable_file16)
@@ -156,7 +156,7 @@ glance(lg_fit2)
 lg_fit_statistics_needforcare <- glance(lg_fit2)
 ```
 
-# saved it as a file
+#saved it as a file
 ```{r}
 summarytable_file17 = here("results", "lg_fit_statistics_needforcare.rds")
 saveRDS(lg_fit_statistics_needforcare, file = summarytable_file17)
@@ -172,7 +172,7 @@ compare_log_model
 
 
 
-  
+#**Analysis for Part 4 starts here**  
 #make a model
 #choose multinom_reg() + nnet
 ```{r}
@@ -188,31 +188,31 @@ mydata_recipe <-
   recipe(infection_status_info ~ Age + Sex + education + economic_status + student_or_heathworker + residence + trusted_source + work_from_home + quarantined_or_not + infection_status_info + worry_level + chronic_disease_history + social_distance_practice + follow_preventive_measure, data = mydata)
 ```
 
-# Put 70% of the data into the training set and 30% into testing using strata=BodyTemp
+#Put 70% of the data into the training set and 30% into testing using strata=BodyTemp
 ```{r}
 data_split <- initial_split(mydata, prop = 0.7, strata = infection_status_info)
 ```
 
-# Create data frames for the two sets:
+#Create data frames for the two sets:
 ```{r}
 train_data <- training(data_split)
 test_data  <- testing(data_split)
 ```
 
-# training set proportions by class
+#training set proportions by class
 ```{r}
 train_data %>% 
   count(infection_status_info) %>% 
   mutate(prop = n/sum(n))
 ```
 
-# test set proportions by class
+#test set proportions by class
 ```{r}
 test_data %>% 
   count(infection_status_info) %>% 
   mutate(prop = n/sum(n))
 ```
-##5-fold cross validation, 5 times repeated, stratified on `infection status` for the CV folds
+##5-fold cross validation, 5 times repeated, stratified on `infection status` for the CV folds with training data
 ```{r}
 mydata_folds <- vfold_cv(train_data, v = 5, repeats =5, strata= "infection_status_info")
 ```
@@ -225,20 +225,32 @@ mydata_wf <-
   add_recipe(mydata_recipe)
 ```
 
-#fit
+#fitting the training data
 ```{r}
-mydata_fit <- 
+training_data_fit <- 
  mydata_wf %>% 
   fit_resamples(mydata_folds)
 ```
 
-#metrics
+#metrics of training data
 ```{r}
-collect_metrics(mydata_fit)
+collect_metrics(training_data_fit)
+```
+##5-fold cross validation, 5 times repeated, stratified on `infection status` for the CV folds with test data
+```{r}
+mydata_folds2 <- vfold_cv(test_data, v = 5, repeats =5, strata= "infection_status_info")
+```
+#fitting the test data
+```{r}
+test_data_fit <- 
+ mydata_wf %>% 
+  fit_resamples(mydata_folds2)
 ```
 
-
-
+#metrics of test data
+```{r}
+collect_metrics(test_data_fit)
+```
 
 
 

@@ -494,7 +494,7 @@ lg_fit &lt;-
 lg_fit</code></pre>
 <pre><code>## parsnip model object
 ## 
-## Fit time:  9ms 
+## Fit time:  7ms 
 ## 
 ## Call:  stats::glm(formula = infection_status_info ~ Age + Sex + education, 
 ##     family = stats::binomial, data = data)
@@ -527,8 +527,7 @@ lg_fit</code></pre>
 ## 5 educationSecondary                      -0.690    0.246      -2.81     4.95e-3
 ## 6 educationPrimary                        -0.437    0.950      -0.460    6.45e-1</code></pre>
 <pre class="r"><code>lg_fit_table_predisposing &lt;- tidy(lg_fit)</code></pre>
-<div id="saved-it-as-a-file" class="section level1">
-<h1>saved it as a file</h1>
+<p>#saved it as a file</p>
 <pre class="r"><code>summarytable_file12 = here(&quot;results&quot;, &quot;lg_fit_table_predisposing.rds&quot;)
 saveRDS(lg_fit_table_predisposing, file = summarytable_file12)</code></pre>
 <pre class="r"><code>glance(lg_fit)</code></pre>
@@ -537,9 +536,7 @@ saveRDS(lg_fit_table_predisposing, file = summarytable_file12)</code></pre>
 ##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 ## 1          930.     705  -437.  885.  913.     873.         700   706</code></pre>
 <pre class="r"><code>lg_fit_statistics_predisposing &lt;- glance(lg_fit)</code></pre>
-</div>
-<div id="saved-it-as-a-file-1" class="section level1">
-<h1>saved it as a file</h1>
+<p>#saved it as a file</p>
 <pre class="r"><code>summarytable_file13 = here(&quot;results&quot;, &quot;lg_fit_statistics_predisposing.rds&quot;)
 saveRDS(lg_fit_statistics_predisposing, file = summarytable_file13)</code></pre>
 <p>#Then, we’ll do log model betweem infection status and socio economic status, area of residence,student/healthworker, source of covid news (Key enabling Factors)</p>
@@ -600,9 +597,7 @@ lg_fit1</code></pre>
 ## 11 trusted_sourceNone of the above            -0.320     0.529    -0.606 5.45e-1
 ## 12 trusted_sourceReligious authorities (Pa…   -0.507     0.672    -0.755 4.50e-1</code></pre>
 <pre class="r"><code>lg_fit_table_enabling &lt;- tidy(lg_fit1)</code></pre>
-</div>
-<div id="saved-it-as-a-file-2" class="section level1">
-<h1>saved it as a file</h1>
+<p>#saved it as a file</p>
 <pre class="r"><code>summarytable_file14 = here(&quot;results&quot;, &quot;lg_fit_table_enabling.rds&quot;)
 saveRDS(lg_fit_table_enabling, file = summarytable_file14)</code></pre>
 <pre class="r"><code>glance(lg_fit1)</code></pre>
@@ -611,9 +606,7 @@ saveRDS(lg_fit_table_enabling, file = summarytable_file14)</code></pre>
 ##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 ## 1          930.     705  -441.  905.  960.     881.         694   706</code></pre>
 <pre class="r"><code>lg_fit_statistics_enabling &lt;- glance(lg_fit1)</code></pre>
-</div>
-<div id="saved-it-as-a-file-3" class="section level1">
-<h1>saved it as a file</h1>
+<p>#saved it as a file</p>
 <pre class="r"><code>summarytable_file15 = here(&quot;results&quot;, &quot;lg_fit_statistics_enabling.rds&quot;)
 saveRDS(lg_fit_statistics_enabling, file = summarytable_file15)</code></pre>
 <p>#Then, we’ll do log model betweem infection status and level of fear of infection and quarantined or not (Key need for care factors )</p>
@@ -623,7 +616,7 @@ saveRDS(lg_fit_statistics_enabling, file = summarytable_file15)</code></pre>
 lg_fit2</code></pre>
 <pre><code>## parsnip model object
 ## 
-## Fit time:  4ms 
+## Fit time:  5ms 
 ## 
 ## Call:  stats::glm(formula = infection_status_info ~ quarantined_or_not + 
 ##     worry_level, family = stats::binomial, data = data)
@@ -650,9 +643,7 @@ lg_fit2</code></pre>
 ## 5 worry_level5=Extremely worried    0.686      0.510     1.35  1.79e- 1
 ## 6 worry_level1=Not at all worried  -0.837      0.272    -3.08  2.08e- 3</code></pre>
 <pre class="r"><code>lg_fit_table_needforcare &lt;- tidy(lg_fit2)</code></pre>
-</div>
-<div id="saved-it-as-a-file-4" class="section level1">
-<h1>saved it as a file</h1>
+<p>#saved it as a file</p>
 <pre class="r"><code>summarytable_file16 = here(&quot;results&quot;, &quot;lg_fit_table_needforcare.rds&quot;)
 saveRDS(lg_fit_table_needforcare, file = summarytable_file16)</code></pre>
 <pre class="r"><code>glance(lg_fit2)</code></pre>
@@ -661,9 +652,7 @@ saveRDS(lg_fit_table_needforcare, file = summarytable_file16)</code></pre>
 ##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
 ## 1          930.     705  -429.  869.  897.     857.         700   706</code></pre>
 <pre class="r"><code>lg_fit_statistics_needforcare &lt;- glance(lg_fit2)</code></pre>
-</div>
-<div id="saved-it-as-a-file-5" class="section level1">
-<h1>saved it as a file</h1>
+<p>#saved it as a file</p>
 <pre class="r"><code>summarytable_file17 = here(&quot;results&quot;, &quot;lg_fit_statistics_needforcare.rds&quot;)
 saveRDS(lg_fit_statistics_needforcare, file = summarytable_file17)</code></pre>
 <p>#compare three models</p>
@@ -679,65 +668,71 @@ compare_log_model</code></pre>
 ## 2       694     881.24  6  -7.8003
 ## 3       700     857.31 -6  23.9355</code></pre>
 <p>#we want to predict each infection status level, not a single contrast. It was a bit difficult to figure out how to do this, but one needs to search here for the model to find the function one needs, turns out it is called multinom_reg()</p>
-<p>#make a model #choose multinom_reg() + nnet</p>
+<p>#<strong>Analysis for Part 4 starts here</strong><br />
+#make a model #choose multinom_reg() + nnet</p>
 <pre class="r"><code>mydata_model &lt;- 
   multinom_reg() %&gt;% 
   set_engine(&quot;nnet&quot;)</code></pre>
 <p>#make a recipe</p>
 <pre class="r"><code>mydata_recipe &lt;- 
   recipe(infection_status_info ~ Age + Sex + education + economic_status + student_or_heathworker + residence + trusted_source + work_from_home + quarantined_or_not + infection_status_info + worry_level + chronic_disease_history + social_distance_practice + follow_preventive_measure, data = mydata)</code></pre>
-</div>
-<div id="put-70-of-the-data-into-the-training-set-and-30-into-testing-using-stratabodytemp" class="section level1">
-<h1>Put 70% of the data into the training set and 30% into testing using strata=BodyTemp</h1>
+<p>#Put 70% of the data into the training set and 30% into testing using strata=BodyTemp</p>
 <pre class="r"><code>data_split &lt;- initial_split(mydata, prop = 0.7, strata = infection_status_info)</code></pre>
-</div>
-<div id="create-data-frames-for-the-two-sets" class="section level1">
-<h1>Create data frames for the two sets:</h1>
+<p>#Create data frames for the two sets:</p>
 <pre class="r"><code>train_data &lt;- training(data_split)
 test_data  &lt;- testing(data_split)</code></pre>
-</div>
-<div id="training-set-proportions-by-class" class="section level1">
-<h1>training set proportions by class</h1>
+<p>#training set proportions by class</p>
 <pre class="r"><code>train_data %&gt;% 
   count(infection_status_info) %&gt;% 
   mutate(prop = n/sum(n))</code></pre>
 <pre><code>## # A tibble: 3 × 3
 ##   infection_status_info     n   prop
 ##   &lt;fct&gt;                 &lt;int&gt;  &lt;dbl&gt;
-## 1 noTest                  312 0.632 
-## 2 negative                134 0.271 
-## 3 positive                 48 0.0972</code></pre>
-</div>
-<div id="test-set-proportions-by-class" class="section level1">
-<h1>test set proportions by class</h1>
+## 1 noTest                  314 0.637 
+## 2 negative                135 0.274 
+## 3 positive                 44 0.0892</code></pre>
+<p>#test set proportions by class</p>
 <pre class="r"><code>test_data %&gt;% 
   count(infection_status_info) %&gt;% 
   mutate(prop = n/sum(n))</code></pre>
 <pre><code>## # A tibble: 3 × 3
 ##   infection_status_info     n   prop
 ##   &lt;fct&gt;                 &lt;int&gt;  &lt;dbl&gt;
-## 1 noTest                  133 0.627 
-## 2 negative                 63 0.297 
-## 3 positive                 16 0.0755</code></pre>
-<p>##5-fold cross validation, 5 times repeated, stratified on <code>infection status</code> for the CV folds</p>
+## 1 noTest                  131 0.615 
+## 2 negative                 62 0.291 
+## 3 positive                 20 0.0939</code></pre>
+<p>##5-fold cross validation, 5 times repeated, stratified on <code>infection status</code> for the CV folds with training data</p>
 <pre class="r"><code>mydata_folds &lt;- vfold_cv(train_data, v = 5, repeats =5, strata= &quot;infection_status_info&quot;)</code></pre>
 <p>#make workflow</p>
 <pre class="r"><code>mydata_wf &lt;- 
   workflow() %&gt;% 
   add_model(mydata_model) %&gt;% 
   add_recipe(mydata_recipe)</code></pre>
-<p>#fit</p>
-<pre class="r"><code>mydata_fit &lt;- 
+<p>#fitting the training data</p>
+<pre class="r"><code>training_data_fit &lt;- 
  mydata_wf %&gt;% 
   fit_resamples(mydata_folds)</code></pre>
-<p>#metrics</p>
-<pre class="r"><code>collect_metrics(mydata_fit)</code></pre>
+<p>#metrics of training data</p>
+<pre class="r"><code>collect_metrics(training_data_fit)</code></pre>
 <pre><code>## # A tibble: 2 × 6
 ##   .metric  .estimator  mean     n std_err .config             
 ##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
-## 1 accuracy multiclass 0.618    25 0.00585 Preprocessor1_Model1
-## 2 roc_auc  hand_till  0.673    25 0.00868 Preprocessor1_Model1</code></pre>
-</div>
+## 1 accuracy multiclass 0.615    25 0.00842 Preprocessor1_Model1
+## 2 roc_auc  hand_till  0.655    25 0.0102  Preprocessor1_Model1</code></pre>
+<p>##5-fold cross validation, 5 times repeated, stratified on <code>infection status</code> for the CV folds with test data</p>
+<pre class="r"><code>mydata_folds2 &lt;- vfold_cv(test_data, v = 5, repeats =5, strata= &quot;infection_status_info&quot;)</code></pre>
+<p>#fitting the test data</p>
+<pre class="r"><code>test_data_fit &lt;- 
+ mydata_wf %&gt;% 
+  fit_resamples(mydata_folds2)</code></pre>
+<pre><code>## ! Fold3, Repeat5: internal: No observations were detected in `truth` for level(s): &#39;positi...</code></pre>
+<p>#metrics of test data</p>
+<pre class="r"><code>collect_metrics(test_data_fit)</code></pre>
+<pre><code>## # A tibble: 2 × 6
+##   .metric  .estimator  mean     n std_err .config             
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1 accuracy multiclass 0.574    25  0.0120 Preprocessor1_Model1
+## 2 roc_auc  hand_till  0.622    25  0.0155 Preprocessor1_Model1</code></pre>
 
 
 

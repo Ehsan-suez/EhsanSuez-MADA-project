@@ -136,7 +136,7 @@ summary(data1$`student/heathworker`)
 
 ```{r}
 data1 %>% 
-     group_by( `student/heathworker` ) %>% 
+     group_by( `student_or_heathworker` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 
@@ -309,7 +309,7 @@ table(data1$`Do you have any of the following chronic/underlying diseases? (many
 ```
 ```{r}
 chronic_disease_history = data1 %>% 
-     group_by( `Do you have any of the following chronic/underlying diseases? (many answers possible): None of the above` ) %>% 
+     group_by( `chronic_disease_history` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 print(chronic_disease_history)
 ```
@@ -322,7 +322,7 @@ saveRDS(df11, file = summarytable_file)
 
 #the next code basically summarizes the answers for each question:
 ```{r}
-table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Social distancing of at least 1.5m`)
+table(data1$`social_distance_practice`)
 ```
 ```{r}
 table(data1$`During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): Wearing face mask`)
@@ -338,7 +338,7 @@ table(data1$`During the past 7 days, have you been observing any of the followin
 ```
 ```{r}
 data1 %>% 
-     group_by( `During the past 7 days, have you been observing any of the following preventive measures against COVID-19? (Tick all answers that apply): None of the above` ) %>% 
+     group_by( `follow_preventive_measure` ) %>% 
      summarise( percent = 100 * n() / nrow( data1) )
 ```
 

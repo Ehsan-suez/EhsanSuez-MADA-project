@@ -53,10 +53,6 @@ processeddata<- processeddata1 %>% mutate(across(where(is_character),as_factor))
 
 
 ```{r}
-View(processeddata)
-```
-
-```{r}
 str(processeddata)
 ```
 
