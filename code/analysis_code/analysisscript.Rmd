@@ -1,7 +1,7 @@
 ---
 title: "analysis"
 author: "Ehsan"
-date: "10/27/2021"
+date: "11/12/2021"
 output: html_document
 ---
 
@@ -168,6 +168,11 @@ compare_log_model <- anova(lg_fit$fit, lg_fit1$fit, lg_fit2$fit)
 compare_log_model
 ```
 
+#saved it as a file
+```{r}
+summarytable_file18 = here("results", "Comparison of Models.rds")
+saveRDS(compare_log_model, file = summarytable_file18)
+```
 #we want to predict each infection status level, not a single contrast. It was a bit difficult to figure out how to do this, but one needs to search here for the model to find the function one needs, turns out it is called multinom_reg()
 
 
@@ -234,8 +239,15 @@ training_data_fit <-
 
 #metrics of training data
 ```{r}
-collect_metrics(training_data_fit)
+training_data_metrics <- collect_metrics(training_data_fit)
+training_data_metrics
 ```
+#saved it as a file
+```{r}
+summarytable_file19 = here("results", "Metrices of Training Data.rds")
+saveRDS(training_data_metrics, file = summarytable_file19)
+```
+
 ##5-fold cross validation, 5 times repeated, stratified on `infection status` for the CV folds with test data
 ```{r}
 mydata_folds2 <- vfold_cv(test_data, v = 5, repeats =5, strata= "infection_status_info")
@@ -249,8 +261,13 @@ test_data_fit <-
 
 #metrics of test data
 ```{r}
-collect_metrics(test_data_fit)
+test_data_metrics <- collect_metrics(test_data_fit)
+test_data_metrics
 ```
-
+#saved it as a file
+```{r}
+summarytable_file20 = here("results", "Metrices of TestData.rds")
+saveRDS(test_data_metrics, file = summarytable_file20)
+```
 
 

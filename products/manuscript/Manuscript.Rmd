@@ -134,10 +134,25 @@ resulttable=readRDS("../../results/lg_fit_statistics_needforcare.rds")
 knitr::kable(resulttable, caption = "logistic regression statistics betweem infection status and Key Need for Care Factors")
 ```
 
+The comparison between these three models give us this information:
+
+```{r summarytable18,  echo=FALSE}
+resulttable=readRDS("../../results/Comparison of Models.rds")
+knitr::kable(resulttable, caption = "Comparison of the Models")
+```
 
 
+we want to predict each infection status level, not a single contrast by using multinom_reg(). The result is as following:
 
+```{r summarytable19,  echo=FALSE}
+resulttable=readRDS("../../results/Metrices of Training Data.rds")
+knitr::kable(resulttable, caption = "Metrices of Training Data")
+```
 
+```{r summarytable20,  echo=FALSE}
+resulttable=readRDS("../../results/Metrices of TestData.rds")
+knitr::kable(resulttable, caption = "Metrices of Testing Data")
+```
 
 # Discussion
 

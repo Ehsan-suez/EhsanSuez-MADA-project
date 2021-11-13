@@ -11,7 +11,7 @@
 
 <meta name="author" content="Ehsan" />
 
-<meta name="date" content="2021-10-27" />
+<meta name="date" content="2021-11-12" />
 
 <title>analysis</title>
 
@@ -168,7 +168,7 @@ pre code {
 
 <h1 class="title toc-ignore">analysis</h1>
 <h4 class="author">Ehsan</h4>
-<h4 class="date">10/27/2021</h4>
+<h4 class="date">11/12/2021</h4>
 
 </div>
 
@@ -494,7 +494,7 @@ lg_fit &lt;-
 lg_fit</code></pre>
 <pre><code>## parsnip model object
 ## 
-## Fit time:  7ms 
+## Fit time:  9ms 
 ## 
 ## Call:  stats::glm(formula = infection_status_info ~ Age + Sex + education, 
 ##     family = stats::binomial, data = data)
@@ -616,7 +616,7 @@ saveRDS(lg_fit_statistics_enabling, file = summarytable_file15)</code></pre>
 lg_fit2</code></pre>
 <pre><code>## parsnip model object
 ## 
-## Fit time:  5ms 
+## Fit time:  4ms 
 ## 
 ## Call:  stats::glm(formula = infection_status_info ~ quarantined_or_not + 
 ##     worry_level, family = stats::binomial, data = data)
@@ -667,6 +667,9 @@ compare_log_model</code></pre>
 ## 1       700     873.44            
 ## 2       694     881.24  6  -7.8003
 ## 3       700     857.31 -6  23.9355</code></pre>
+<p>#saved it as a file</p>
+<pre class="r"><code>summarytable_file18 = here(&quot;results&quot;, &quot;Comparison of Models.rds&quot;)
+saveRDS(compare_log_model, file = summarytable_file18)</code></pre>
 <p>#we want to predict each infection status level, not a single contrast. It was a bit difficult to figure out how to do this, but one needs to search here for the model to find the function one needs, turns out it is called multinom_reg()</p>
 <p>#<strong>Analysis for Part 4 starts here</strong><br />
 #make a model #choose multinom_reg() + nnet</p>
@@ -688,9 +691,9 @@ test_data  &lt;- testing(data_split)</code></pre>
 <pre><code>## # A tibble: 3 × 3
 ##   infection_status_info     n   prop
 ##   &lt;fct&gt;                 &lt;int&gt;  &lt;dbl&gt;
-## 1 noTest                  314 0.637 
-## 2 negative                135 0.274 
-## 3 positive                 44 0.0892</code></pre>
+## 1 noTest                  308 0.625 
+## 2 negative                137 0.278 
+## 3 positive                 48 0.0974</code></pre>
 <p>#test set proportions by class</p>
 <pre class="r"><code>test_data %&gt;% 
   count(infection_status_info) %&gt;% 
@@ -698,9 +701,9 @@ test_data  &lt;- testing(data_split)</code></pre>
 <pre><code>## # A tibble: 3 × 3
 ##   infection_status_info     n   prop
 ##   &lt;fct&gt;                 &lt;int&gt;  &lt;dbl&gt;
-## 1 noTest                  131 0.615 
-## 2 negative                 62 0.291 
-## 3 positive                 20 0.0939</code></pre>
+## 1 noTest                  137 0.643 
+## 2 negative                 60 0.282 
+## 3 positive                 16 0.0751</code></pre>
 <p>##5-fold cross validation, 5 times repeated, stratified on <code>infection status</code> for the CV folds with training data</p>
 <pre class="r"><code>mydata_folds &lt;- vfold_cv(train_data, v = 5, repeats =5, strata= &quot;infection_status_info&quot;)</code></pre>
 <p>#make workflow</p>
@@ -713,26 +716,34 @@ test_data  &lt;- testing(data_split)</code></pre>
  mydata_wf %&gt;% 
   fit_resamples(mydata_folds)</code></pre>
 <p>#metrics of training data</p>
-<pre class="r"><code>collect_metrics(training_data_fit)</code></pre>
+<pre class="r"><code>training_data_metrics &lt;- collect_metrics(training_data_fit)
+training_data_metrics</code></pre>
 <pre><code>## # A tibble: 2 × 6
 ##   .metric  .estimator  mean     n std_err .config             
 ##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
-## 1 accuracy multiclass 0.615    25 0.00842 Preprocessor1_Model1
-## 2 roc_auc  hand_till  0.655    25 0.0102  Preprocessor1_Model1</code></pre>
+## 1 accuracy multiclass 0.621    25 0.00693 Preprocessor1_Model1
+## 2 roc_auc  hand_till  0.674    25 0.00845 Preprocessor1_Model1</code></pre>
+<p>#saved it as a file</p>
+<pre class="r"><code>summarytable_file19 = here(&quot;results&quot;, &quot;Metrices of Training Data.rds&quot;)
+saveRDS(training_data_metrics, file = summarytable_file19)</code></pre>
 <p>##5-fold cross validation, 5 times repeated, stratified on <code>infection status</code> for the CV folds with test data</p>
 <pre class="r"><code>mydata_folds2 &lt;- vfold_cv(test_data, v = 5, repeats =5, strata= &quot;infection_status_info&quot;)</code></pre>
 <p>#fitting the test data</p>
 <pre class="r"><code>test_data_fit &lt;- 
  mydata_wf %&gt;% 
   fit_resamples(mydata_folds2)</code></pre>
-<pre><code>## ! Fold3, Repeat5: internal: No observations were detected in `truth` for level(s): &#39;positi...</code></pre>
+<pre><code>## ! Fold3, Repeat4: internal: No observations were detected in `truth` for level(s): &#39;positi...</code></pre>
 <p>#metrics of test data</p>
-<pre class="r"><code>collect_metrics(test_data_fit)</code></pre>
+<pre class="r"><code>test_data_metrics &lt;- collect_metrics(test_data_fit)
+test_data_metrics</code></pre>
 <pre><code>## # A tibble: 2 × 6
 ##   .metric  .estimator  mean     n std_err .config             
 ##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
-## 1 accuracy multiclass 0.574    25  0.0120 Preprocessor1_Model1
-## 2 roc_auc  hand_till  0.622    25  0.0155 Preprocessor1_Model1</code></pre>
+## 1 accuracy multiclass 0.574    25  0.0135 Preprocessor1_Model1
+## 2 roc_auc  hand_till  0.597    25  0.0187 Preprocessor1_Model1</code></pre>
+<p>#saved it as a file</p>
+<pre class="r"><code>summarytable_file20 = here(&quot;results&quot;, &quot;Metrices of TestData.rds&quot;)
+saveRDS(test_data_metrics, file = summarytable_file20)</code></pre>
 
 
 
