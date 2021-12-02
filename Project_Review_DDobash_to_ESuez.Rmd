@@ -1,0 +1,169 @@
+---
+title: Project Review by Dawson Dobash for Ehsan Suez
+date: "`r file.mtime(knitr::current_input())`"
+#bibliography: ../media/references.bib
+output: 
+  html_document:
+    toc_depth: 3
+    number_sections: true
+---
+
+# Overview
+
+Title of project: 
+
+Name of project author(s): Ehsan Suez
+
+Name of project reviewer: Dawson Dobash
+
+
+# Specific project content evaluation
+Evaluate the different parts of the project by filling in the sections below.
+
+
+## Background, Context and Motivation
+How well is the context of the project described? Is a comprehensive background, including summary of previous/related work given? Is the project well placed into the context of existing work (including proper referencing of existing work). Is it clear why the project was undertaken and what new information it hopes to provide?
+
+### Feedback and Comments
+
+For your introduction, I would say some parts of it got wordy and sometimes hard to understand when you were listing factors from other studies. You did provide some good previous/related work within your introduction. The project is well placed as you are doing another study as the ones you've describe but within another country. The new information comes from using Andersen's model of health care utilization. I guess my comment would be what information would be coming out from this analysis specifically what impact will this have to Bangladesh if they see your results? Would they try to promote more tests for a specific group of people? 
+
+### Summary assessment (PICK ONE, DELETE THE OTHERS)
+* strong contextualization and motivation
+
+
+## Question description
+How well and clear are the question(s)/hypotheses the project aims to address described? Is it clear how the questions relate to the data?
+
+
+### Feedback and Comments
+
+Yes it is clear what the question is and how it is related to the data. A stylistic change I would do is just present your question different such as just saying the question as a direct statement.
+
+### Summary assessment
+* question/hypotheses fully clear
+
+
+## Data description
+How well is the data overall described? Is the source provided? Is a codebook or other meta-information available that makes it clear what the data is? 
+
+### Feedback and Comments
+
+I would put the source of your data somewhere within your Description of data and data source section (2.2). I know you mentioned an online survey but what online survey and where is this online survey located. I see that within the Methods and Results section (3), you explain the data more there. I would move those descriptions of the data to the Description of data and data source section (2.2). You explain the levels of each variable which is good. 
+
+### Summary assessment
+* source and overall structure of data somewhat explained
+
+
+## Data wrangling and exploratory analysis
+How well is the data cleaned/processed and explored? Are all steps reasonable and well explained? Are alternatives discussed and considered? Are meaningful exploratory results shown (e.g. in the supplementary materials)?
+
+### Feedback and Comments
+
+I think the data is clean because it is a survey which means each observation tends to one person but not too much cleaning was done. For the exploratory analysis, I only see two things in the manuscript for exploratory analysis which one is a large table. I dont know how much other information from your exploratory file you might want to add if it looks maybe interesting, I would include it. I would look through and see what else you could include but remember to limit it in the manuscript. Also there is no separate section for the main analysis. I would include more of a description to your methods section, and include your newest tests you have done from the analysis script. 
+
+### Summary assessment
+* some weaknesses in wrangling and exploratory component
+
+
+## Appropriateness of Analysis
+Were the analysis methods appropriate for the data? Was the analysis done properly? Were different components of the analysis (e.g. performance measure, variable selection, data pre-processing, model evaluation) done in the best way possible and explained well?
+
+### Feedback and Comments
+
+From what I can tell, it looks like the analysis was done properly. You just need to include the final part of your analysis to the manuscript from the analysis script. Since it is not part of the manuscript as of now and you have not explained it yet, that is the only reason I will be giving you the summary assessment I am giving you. You could try the other machine learning techniques just to see what results you get comparing to the other technique you used.
+
+### Summary assessment
+* defensible but not optimal analysis 
+
+
+## Presentation
+How well are results presented? Are tables and figures easy to read and understand? Are the main figures/tables publication level quality? 
+
+### Feedback and Comments
+
+Some results are missing, the tables are sometimes hard to understand (I also have a similar problem with my project), and the figure could have better descriptions (x-axis and main title). I would recommend adding more commentary to what your analyses mean, explain each table, and reference the figure and tables while describing their results such as "In Table [blank],...". JUst make sure it is clear what table/figure you are referencing to and the results you want to present is clearly explained and limit the complex sentence structure when explaining the results. 
+
+### Summary assessment
+* results are poorly presented, hard to understand, poor quality
+
+
+## Discussion/Conclusions
+Are the study findings properly discussed? Are strengths and limitations acknowledged? Are findings interpreted properly?
+
+### Feedback and Comments
+
+You have not finished this area therefore I cannot assess this section. 
+
+### Summary assessment
+* major parts of discussion missing or wrong 
+
+
+## Further comments
+
+For your supplemental material file, you need to add some more commentary about each thing. For your manuscript, you still need to complete your summary and abstract. You also need to go through your transcript and delete sections that you plan on not writing in such as Data acquisition (3.1) if you plan on using other sections to describe that contents. 
+
+
+# Overall project content evaluation
+Evaluate overall features of the project  by filling in the sections below.
+
+
+## Structure
+Is the project well structured? Are files in well labeled folders? Do files have reasonable names? Are all "junk" files not needed for analysis/reproduction removed? By just looking at files and folders, can you get an idea of how things fit together?
+
+### Feedback and Comments
+
+The structure of the project looks like it is good and each file is within its respected and reasonable named folders. Looking through the folders, there are no files that seem out of context but, there are still some junk files/useless files that are from the template still such as slides in the product folder and the analysisscript.R file. 
+
+### Summary assessment
+* mostly clear, but some confusing parts (e.g. useless files, things in the wrong folders)
+
+
+## Documentation 
+How well is the project documented? Are you able to understand each step of the whole analysis, each decision that was made, and each line of code? Is enough information provided as comments in code or as part of Rmd files? 
+
+### Feedback and Comments
+
+I am going to break down the documentation by file. First, within the processing script, it is minor but there is no documentation on the renaming process or the changing to a factor code. But again this is very very minor. Might not need to explain this. 
+
+Next within you exploratory file, around line 282, no comments of what these command do. I see if creates a frequencies for each variable but need to explain that. Also although you explained what each code is figuring out, you might want to add some comments on the ways you are displaying it such as "I am using [blank] to show [blank]". 
+
+Within the analysis script, similar to the exploratory file, you might want to add more comments on the techniques/functions you used to find the results you have. You explain you are using logistic regression but maybe explain you are getting summary statistics for these models. Also for some of these models, maybe comment on some of the results that you get focusing on the biggest finds. 
+
+### Summary assessment
+* decently documented with some gaps
+
+
+## Reproducibility
+Are all results fully reproducible? Is documentation provided which clearly explains how to reproduce things, and does it work without the need for any manual intervention? Are you able to re-run the whole analysis without having to do manual interventions/edits?
+
+### Feedback and Comments
+
+All of the documentation and files were full reproducible. Within the main readme file, you mention what each file does but you might want to give some simple steps on what way and order to reproduce everything. 
+
+
+### Summary assessment
+* fully reproducible without issues
+
+
+## Thoroughness
+How thorough was the overall study? Were alternatives (e.g. different ways of processing the data or different models) considered? Were alternatives discussed? Were the questions/hypotheses fully and thoroughly addressed?
+
+### Feedback and Comments
+
+It seems like the data was already able to run without too much cleaning to the file, and as for different models, you had to figure out what the best way/the way you want to analyze your data besides the other type we learned in class. For your specific analysis I do not know off the top of my head what other model types you could have used if this specific function was able to run how you wanted to run it. 
+
+### Summary assessment
+* strong level of thorougness
+
+
+## Further comments
+
+For your overall content evaluation, it looks like you were organized in your repository. I would say maybe update you read me file specifically when you talked about the analysis script because you also did part 4 analysis. 
+
+You are also missing a lot from your manuscript so I would try to finish those areas as soon as possible. I think you project is very interesting and good luck with the rest of the semester. Looking forward to your complete project! GOOD LUCK and I hope I gave you some help!!
+
+
+
+
+
