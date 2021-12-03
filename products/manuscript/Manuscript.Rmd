@@ -17,7 +17,19 @@ csl: ../apa.csl
 
 
 # Summary/Abstract
-I'll write it later.,
+**Objective:** The COVID-19 testing situation in Bangladesh was controlled with various social measures. Much of the information covered in the media and in studies focused on the public health and economic aspects of the pandemic. This study aimed to explore the testing decision influences of  adult people, which is important especially in an young society categorised as low income or middle income due to the limits of economic and healthcare resources.
+
+**Setting:** The impact of COVID-19 on adult persons in Bangladesh, an online survey, taken across the six regions of the country.
+
+**Participants:** Total 759 adults (median age 45 years, interquartile range 33-57 years, range 18-93 years), participated in the study. COVID-19 testing/infection status was assessed by self-report.
+
+**Outcome measures:** The analysis focused on the the knowledge of young adults of their infection status based on testing during the pandemic using logistic regression analysis.
+
+_Results:_ 
+
+**Conclusion:** Observing the status of the infection knowledge of the adult population is important for introducing policies that can improve their decision on testing.
+
+**Keywords:** COVID-19; public health; social medicine.
 
 
 # Introduction 
@@ -160,11 +172,10 @@ knitr::kable(resulttable, caption = "Metrices of Testing Data")
 _Summarize what you did, what you found and what it means._
 
 ## Strengths and Limitations
-_Discuss what you perceive as strengths and limitations of your analysis._
+Our study respondents cannot be considered representative of the general population in the study country, since respondents needed to have had access to the internet to participate in the online survey. Moreover, self-reports, including the outcome variable COVID-19 testing, may be influenced by recall bias and social desirability. We also have no information on the type of test used for COVID-19 testing, limiting the accuracy and authenticity of the test results. Some variables, such as COVID-19 symptoms, previous use of health care services, obesity, and smoking, that have been found affecting COVID-19 testing uptake [@Chadeau-hyam] were not assessed in this survey and should be included in future studies.
 
 ## Conclusions
-_What are the main take-home messages?_
-
+This study among adults across Bangladesh reported a high prevalence of COVID-19 testing. Factors associated with COVID-19 testing included some predisposing factors (residing , postgraduate education, having at least one chronic condition) and enabling/disabling factors (urban residence, higher perceived economic status, being a student or worker in the health care sector, and moderate or severe psychological distress). Identified predisposing and enabling or disabling factors can be used to design programmes to improve COVID-19 testing uptake. Access to testing needs to be increased for persons living in Bangladesh and similar resource poor settings. In addition, COVID-19 testing programs need to target persons of lower economic status and of lower education level who currently less tested but most at risk for COVID-19 infection.
 
 
 
