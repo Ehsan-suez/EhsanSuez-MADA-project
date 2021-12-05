@@ -1,0 +1,208 @@
+---
+title: Project Review Template 
+date: "`r file.mtime(knitr::current_input())`"
+#bibliography: ../media/references.bib
+output: 
+  html_document:
+    toc_depth: 3
+    number_sections: true
+---
+
+# Overview
+
+Title of project:"Using Andersen’s model of health care utilization to assess factors associated with COVID-19 testing among adults in Bangladesh: an online survey"
+
+Name of project author(s): Ehsan Suez
+
+Name of project reviewer: Monica Chan
+
+
+# Specific project content evaluation
+
+## Background, Context and Motivation
+How well is the context of the project described? Is a comprehensive background, including summary of previous/related work given? Is the project well placed into the context of existing work (including proper referencing of existing work). Is it clear why the project was undertaken and what new information it hopes to provide?
+
+### Feedback and Comments
+Your background on SARS-CoV2 infection and the data gathered is great.
+Unfortunately, I'm unfamiliar with the Andersen's model of health care utilization. 
+I think that adding some more details about the Andersen's model of health care utilization would be beneficial since it is part of your title, but not mentioned anywhere else besides you have selected it. Perhaps add some reasoning why you are using this model of healthcare utilization, or expand more on why it is better than others?
+
+### Summary assessment
+
+* strong contextualization and motivation
+
+
+## Question description
+How well and clear are the question(s)/hypotheses the project aims to address described? Is it clear how the questions relate to the data?
+
+To use Andersen's model of health care utilization to determine factors associated with COVID-19 testing among adults in Bangladesh. 
+
+### Feedback and Comments
+
+Your question is more of an exploratory analysis and is stated clearly.
+I think you could elaborate more on some of the data like what factors out of everything gathered, survey data, or quantitative data were the most impact in association with the COVID-19 testing.
+
+### Summary assessment
+
+* question/hypotheses fully clear
+
+
+## Data description
+How well is the data overall described? Is the source provided? Is a codebook or other meta-information available that makes it clear what the data is? 
+
+
+
+### Feedback and Comments
+
+A key may be useful witin the repository as part of the readme in the raw data or data folder.
+Otherwise the data is expanded on in the manuscript in section 2.2.
+The source is well documented in the manuscript and explained more in the introduction, this is fine-- but I feel that the detail about the data in the introduction is a bit too much and would serve better in the 2.2 Description of data and data source.
+
+### Summary assessment
+
+* source and overall structure of data somewhat explained
+
+
+## Data wrangling and exploratory analysis
+How well is the data cleaned/processed and explored? Are all steps reasonable and well explained? Are alternatives discussed and considered? Are meaningful exploratory results shown (e.g. in the supplementary materials)?
+
+### Feedback and Comments
+
+Data wrangling was good in saving the wrangled data in the processed data section to be used in downstream code.
+Exploratory results were great at describing the results from the data gathered, but limited to really . I really liked the summary table output in the `analysisscipt` code chunk 5.
+
+
+### Summary assessment
+
+* some weaknesses in wrangling and exploratory component
+
+
+
+## Appropriateness of Analysis
+Were the analysis methods appropriate for the data? Was the analysis done properly? Were different components of the analysis (e.g. performance measure, variable selection, data pre-processing, model evaluation) done in the best way possible and explained well?
+
+### Feedback and Comments
+
+I like the analysis stats you have with the intercepts and P-values.
+
+The manuscript is a little conversational, maybe adjust in the paper-- but is fine as comments in the code.
+
+### Summary assessment
+
+* defensible but not optimal analysis 
+
+
+## Presentation
+How well are results presented? Are tables and figures easy to read and understand? Are the main figures/tables publication level quality? 
+
+### Feedback and Comments
+
+Results and stats are presented. Some text is needed to detail highlights of the results.
+Three may be too many stats/results presented, some could possibly be moved to a supplementary folder for additional elaboration that may not be too central to the questions asked.
+If possible, I think a good mix of figures in addition to the tables would be great and could make a lot of the descriptive data easily readable.
+
+[Comments after update pull 12/3/2021]
+There's not a specific results section. I think some of the exploratory analysis could be split better into a results section or have the exploratory analysis be under a results section
+
+### Summary assessment
+* results are poorly presented, hard to understand, poor quality
+
+
+
+## Discussion/Conclusions
+Are the study findings properly discussed? Are strengths and limitations acknowledged? Are findings interpreted properly?
+
+### Feedback and Comments
+
+Discussion section is not complete. With all the results presented, reminder to justify why certain aspects were chosen and tested.
+
+[Comments after update pull 12/3/2021]
+Summary and interpretation needs to be filled in.
+Strengths and limitations covers a bit of ground, could always add more.
+
+Conclusion could repeat the primary question and answer directly. Followed by more support sentences.
+
+### Summary assessment
+* major parts of discussion missing or wrong 
+
+
+## Further comments
+
+I think the paper would benefit from a pure Results section (difference from actual structure of the paper and the sections outlined in the Summary/Abstract). So maybe think about separating Methods and results into 2 sections.
+
+Create and finalize the final results, discussion, and conclusion sections and I think it should be in good condition.
+
+
+# Overall project content evaluation
+
+## Structure
+Is the project well structured? Are files in well labeled folders? Do files have reasonable names? Are all "junk" files not needed for analysis/reproduction removed? By just looking at files and folders, can you get an idea of how things fit together?
+
+### Feedback and Comments
+
+Structure is easy to follow as it is still structured as the `dataanalsysis-template` for the class. 
+
+Primary files are in the correct/expected folders.
+
+[Comments after update pull 12/3/2021]
+Files still contain some unused files and folders (see in the products and unused template files). You can make an `ARCHIVED` folder to place all unused files. Alternatively you can just remove them.
+
+### Summary assessment
+
+* mostly clear, but some confusing parts (e.g. useless files, things in the wrong folders)
+
+
+
+## Documentation 
+How well is the project documented? Are you able to understand each step of the whole analysis, each decision that was made, and each line of code? Is enough information provided as comments in code or as part of Rmd files? 
+
+### Feedback and Comments
+
+I like the explanations of why certain things are done, the notation is a little different than what I'm used to (inline comments). They could be expanded more yet the text there can be interpreted as needed.
+
+[Comments after update pull 12/3/2021]
+In section 3.2 in the manuscript, I'm not sure if the code chunk is needed to be in this document, or relevant in that one space.
+
+### Summary assessment
+
+* decently documented with some gaps
+
+
+
+## Reproducibility
+Are all results fully reproducible? Is documentation provided which clearly explains how to reproduce things, and does it work without the need for any manual intervention? Are you able to re-run the whole analysis without having to do manual interventions/edits?
+
+### Feedback and Comments
+
+Code ran and knit with no errors.
+
+
+### Summary assessment
+
+* fully reproducible without issues
+
+
+## Thoroughness
+How thorough was the overall study? Were alternatives (e.g. different ways of processing the data or different models) considered? Were alternatives discussed? Were the questions/hypotheses fully and thoroughly addressed?
+
+### Feedback and Comments
+
+It's hard to tell with results being difficult to interpret or place in a section that I am unable to recognize as results. There's a lot of observations about the data, which is nice to get a view about the population being looked at.
+
+[Comments after update pull 12/3/2021]
+Since the starting question is limited to a specific model from the title and determine factors mentioned specifically in the questions to be addressed-- the study and alternatives are limited. 
+
+Discussion needs to be elaborated on, due to how limited the study is/was. 
+
+### Summary assessment
+
+
+* strong level of thoroughness
+
+
+## Further comments
+
+[Comments after update pull 12/3/2021]
+I think you accomplished what you wanted to for this project and for this data set.
+I do think that you can improve a bit on the organization of the manuscript. Your abstract section has boded sections, maybe outline the manuscript in that manner and shuffle the subsection under the main sections. to improve clarity and flow of the paper.
+Work on the Discussion of results and flush out the strengths/limitations and conclusion sections and it should be good.
